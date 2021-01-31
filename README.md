@@ -14,6 +14,9 @@ cd apex
 pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 ```
 
+**NOTE:** In case you want to work on Google Colab, we also provide a minimal working notebook (`NLP-2-Assignment-Multimodal-NLP.ipynb`) for the same. Please refer to it for further instructions. 
+
+
 ### Clone the repository
 
 Clone the repository using `git clone https://github.com/shaanchandra/NLP-2-Assignment-Multimodal-NLP.git`.
