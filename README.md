@@ -57,8 +57,8 @@ The directory structure is assumed to be as follows:
 │   ├── test_unseen.jsonl
 </pre>
 
-To train the model from the root of the aforementioned directory structure, run the following:
+To train the model from inside the aforementioned directory structure, run the following:
 ```bash
-python -u train_uniter.py --config config/uniter-base.json --data_path dataset/ --model_path model_checkpoints/ --pretrained_model_file uniter-base.pt --feature_path dataset/own_features/ --lr 3e-5 --scheduler warmup_cosine --warmup_steps 500 --max_epoch 30 --batch_size 16 --patience 5 --gradient_accumulation 2 --model_save_name meme.pt --seed 43 
+python -u train_uniter.py --config config/uniter-base.json --data_path ./dataset --model_path ./model_checkpoints --pretrained_model_file uniter-base.pt --feature_path ./dataset/own_features --lr 3e-5 --scheduler warmup_cosine --warmup_steps 500 --max_epoch 30 --batch_size 16 --patience 5 --gradient_accumulation 2 --model_save_name meme.pt --seed 43 
 ```
-The results will be exported as CSV files in the `model_checkpoints` directory.
+The results will be exported as CSV files in the `model_checkpoints` directory in the format expected to be submitted for the leaderboard.
