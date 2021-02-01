@@ -1,19 +1,36 @@
 import argparse
 import os
+import time
+import datetime
+import shutil
+import random
+import sys
+import os
+import json
+import re
+import numpy as np
+from statistics import mean, stdev
 import torch
+from torch.utils.tensorboard import SummaryWriter
+import torch.nn as nn
+import torch.nn.functional as F
+from sklearn.metrics import classification_report
+from transformers import get_linear_schedule_with_warmup, get_cosine_schedule_with_warmup
+from collections import defaultdict
 from functools import partial
 from torch.utils import data
 from transformers import BertTokenizer
 
+from utils.metrics import standard_metrics, find_optimal_threshold
+from utils.optim_utils import get_optimizer
+from utils.utils import calc_elapsed_time, print_stats, print_test_stats, log_tensorboard, set_seed, get_device, get_gather_index, get_attention_mask
+from utils.save import ModelSaver
 from model.meme_uniter import MemeUniter
 from model.pretrain import UniterForPretraining
 from utils.logger import LOGGER
-from train_template import TrainerTemplate
-from data.meme_dataset import MemeDataset, ConfounderSampler
+from data.meme_dataset import MemeDataset
 from model.model import UniterModel, UniterConfig
 from utils.const import IMG_DIM, IMG_LABEL_DIM
-from utils.utils import get_gather_index, get_attention_mask
-from utils.crossval import train_crossval
 
 
 class TrainerUniter():
@@ -327,7 +344,9 @@ class TrainerUniter():
             self.export_val_predictions() # Runs evaluation, no need to run it again here
             val_probs = torch.tensor(self.probs_list)
             val_labels = torch.tensor(self.labels_list)
-            threshold = find_optimal_threshold(val_probs, val_labels, metric="accuracy", show_plot=False)
+            threshold=0.5 # the default threshelod for binary classification
+            # Uncomment below line if you have implemented this optional feature 
+            # threshold = find_optimal_threshold(val_probs, val_labels, metric="accuracy")
             best_val_metrics = standard_metrics(val_probs, val_labels, threshold=threshold, add_aucroc=False)
             LOGGER.info("Optimal threshold on validation dataset: %.4f (accuracy=%4.2f%%)" % (threshold, 100.0*best_val_metrics["accuracy"]))
 
