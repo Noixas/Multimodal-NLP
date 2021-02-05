@@ -470,6 +470,7 @@ class TrainerUniter():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    defaults=dict()
 
     # Required Paths
     parser.add_argument('--data_path', type=str, default='./dataset',
