@@ -3,6 +3,7 @@ import torch.utils.data as data
 import numpy as np
 import os
 from PIL import Image
+from types import SimpleNamespace
 import logging
 import matplotlib.pyplot as plt
 
@@ -192,7 +193,7 @@ if __name__ == '__main__':
                           feature_dir=args.feature_dir,
                           text_padding=tokenizer_func,
                           confidence_threshold=0.4)
-    data_loader = data.DataLoader(dataset, batch_size=32, collate_fn=dataset.get_collate_fn(), sampler=ConfounderSampler(dataset, repeat_factor=2))
+    data_loader = data.DataLoader(dataset, batch_size=32, collate_fn=dataset.get_collate_fn(), sampler=None)
     logger.info("Length of data loader: %i" % len(data_loader))
     try:
         out_dict = next(iter(data_loader))
