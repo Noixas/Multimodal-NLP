@@ -6,7 +6,12 @@ from PIL import Image
 from types import SimpleNamespace
 import logging
 import matplotlib.pyplot as plt
-
+try:
+    from utils.utils import get_attention_mask
+except ModuleNotFoundError as e:
+    import sys
+    sys.path.append("../")
+    from utils.utils import get_attention_mask
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s - %(message)s',
                     datefmt='%d/%m/%Y %I:%M:%S %p',
