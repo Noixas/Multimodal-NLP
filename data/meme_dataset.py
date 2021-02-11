@@ -7,11 +7,11 @@ from types import SimpleNamespace
 import logging
 import matplotlib.pyplot as plt
 try:
-    from utils.utils import get_attention_mask
+    from utils.utils import get_attention_mask, get_gather_index
 except ModuleNotFoundError as e:
     import sys
     sys.path.append("../")
-    from utils.utils import get_attention_mask
+    from utils.utils import get_attention_mask, get_gather_index
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s - %(message)s',
                     datefmt='%d/%m/%Y %I:%M:%S %p',
