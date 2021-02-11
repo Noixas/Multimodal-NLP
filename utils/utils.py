@@ -23,7 +23,8 @@ def calc_elapsed_time(start, end):
 
 
 def log_tensorboard(config, writer, model, epoch, iters, total_iters, loss, metrics=None, lr=0, thresh=0, loss_only=True, val=False):   
-    model_log = model.module if config['parallel_computing'] == True else model
+    # model_log = model.module if config['parallel_computing'] == True else model
+    model_log = model
         
     if loss_only:
         writer.add_scalar('Train/Loss', sum(loss)/len(loss), ((iters+1)+ total_iters))
