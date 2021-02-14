@@ -39,7 +39,7 @@ def log_tensorboard(config, writer, model, epoch, iters, total_iters, loss, metr
     else:
         if not val:
             writer.add_scalar('Train/Epoch_Loss', sum(loss)/len(loss), ((iters+1)+ total_iters))
-            writer.add_scalar('Train/F1', metrics['F1'], epoch)
+            writer.add_scalar('Train/F1', metrics['f1'], epoch)
             writer.add_scalar('Train/Precision', metrics['precision'], epoch)
             writer.add_scalar('Train/Recall', metrics['recall'], epoch)
             writer.add_scalar('Train/Accuracy', metrics['accuracy'], epoch)
