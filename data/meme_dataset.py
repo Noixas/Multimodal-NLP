@@ -6,7 +6,15 @@ from PIL import Image
 from types import SimpleNamespace
 import logging
 import matplotlib.pyplot as plt
-
+try:
+    from utils.utils import get_attention_mask, get_gather_index
+except ModuleNotFoundError as e:
+    import sys
+    sys.path.append(os.path.join(sys.path[0], '..'))
+    from utils.utils import get_attention_mask, get_gather_index
+    
+import json
+from torch.nn.utils.rnn import pad_sequence
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s - %(message)s',
                     datefmt='%d/%m/%Y %I:%M:%S %p',
@@ -52,7 +60,8 @@ class MemeDataset(data.Dataset):
         assert self.filepath.endswith(".jsonl"), "The filepath requires a JSON list file (\".jsonl\"). Please correct the given filepath \"%s\"" % self.filepath
         self.basepath = self.filepath.rsplit("/",1)[0]
         # YOUR CODE HERE:  Load jsonl file as list of JSON objects stored in 'self.json_list
-        
+        with open(self.filepath) as f:
+            self.json_list = [json.loads(json_dict) for json_dict in f.readlines()]
         self._load_dataset()
 
     
@@ -63,14 +72,28 @@ class MemeDataset(data.Dataset):
         self.data = SimpleNamespace(ids=None, imgs=None, labels=None, text=None)
 
         # YOUR CODE HERE:  load the object lists from self.json_list
-        self.data.ids = # fill me
-        self.data.labels = # fill me
-        self.data.text = # fill me
-        self.data.imgs = # fill me
+        self.data.ids = [example["id"] for example in self.json_list]
+        self.data.labels = [example.get("label", -1) for example in self.json_list] # if label doesn't exist, use -1 as default
+        self.data.text = [example["text"] for example in self.json_list]
+        self.data.imgs = [example["img"] for example in self.json_list]
 
         # YOUR CODE HERE:  Check if all image features' and image features' info files exist
+        # Honestly, I don't exactly understand what Shaan expected from us here.
+        for img_id in self.data.ids:
+            img_id = self._expand_id(img_id) 
+
+            np_file = os.path.join(self.feature_dir, img_id + ".npy")
+            assert os.path.exists(np_file), f"File '{np_file}' does not exist"
+
+            info_np_file = os.path.join(self.feature_dir, img_id + "_info.npy")
+            assert os.path.exists(info_np_file), f"File '{info_np_file}' does not exist"
+            
         # YOUR CODE HERE:  Iterate over data ids and load img_feats and img_pos_feats into lists (defined above) using _load_img_feature
-        
+        both_img_feats = [(self._load_img_feature(img_id)) for img_id in self.data.ids]
+        # FIXME something might be wrong here
+        # split a list of tuples into two separate lists
+        self.data.img_feats, self.data.img_pos_feats = zip(*both_img_feats)
+
         # Preprocess text if selected
         if self.text_preprocess is not None:
             self.data.text = self.text_preprocess(self.data.text)
@@ -78,36 +101,61 @@ class MemeDataset(data.Dataset):
     
     def __len__(self):
         # YOUR CODE HERE:  mandatory. 
-        raise NotImplementedError
+        return len(self.data.ids)
 
 
     def _expand_id(self, img_id):
         # YOUR CODE HERE:  Add trailing zeros to the given id (check file names) using zfill
-        raise NotImplementedError
+        return str(img_id).zfill(5)
 
 
     def _load_img_feature(self, img_id, normalize=False):
+        
         img_id = self._expand_id(img_id)
         # YOUR CODE HERE:  Load image features and image feats info in 'img_feat' and 'img_feat_info' (i.e., .npy and _info.npy files) using _load_img_feature
+        img_feat = np.load(os.path.join(self.feature_dir, img_id + ".npy"))
+        # the loaded *_info.npy file is a 0-d array, so we use item() to retrieve the dictionary
+        img_feat_info = np.load(os.path.join(self.feature_dir, img_id + "_info.npy"), allow_pickle=True).item()
 
         # YOUR CODE HERE:  get the x and y coordinates from 'img_feat_info['bbox']'
+        
+        # retrieve a matrix where each row i represents [x1, y1, x2, y2] coords (I suppose) of the ith object from the img
+        coords = img_feat_info["bbox"]
         
         
         if normalize:
             # YOUR CODE HERE:  normalize the coordinates with image width and height
-
-        # YOUR CODE HERE:  calculate the width and height of the bbs from their x,y coordinates 
+            coords[:,[0, 2]] = coords[:,[0, 2]] / img_feat_info["image_width"]
+            coords[:,[1, 3]] = coords[:,[1, 3]] / img_feat_info["image_height"]
         
-        # YOUR CODE HERE:  prepare the 'img_pos_feat' as a 7-dim tensor of x1, y1, x2, y2, w, h, w*h
+        # YOUR CODE HERE:  calculate the width and height of the bbs from their x,y coordinates 
 
-        return img_feat, img_pos_feat
+        # YOUR CODE HERE:  prepare the 'img_pos_feat' as a 7-dim tensor of x1, y1, x2, y2, w, h, w*h
+        img_pos_feat = np.zeros((coords.shape[0], 7))
+        # expand coords with width and height
+        img_pos_feat[:,:4] = coords
+        # compute w = x2 - x1
+        img_pos_feat[:, 4] = coords[:,2] - coords[:,0]
+        # compute h = y2 - y1
+        img_pos_feat[:, 5] = coords[:,3] - coords[:,1]
+        # compute w*h
+        img_pos_feat[:, 6] = img_pos_feat[:, 4] * img_pos_feat[:, 5] 
+        # FIXME what should be the type of img_feat and img_pos_feat? ndarray? torch tensor?
+        return torch.from_numpy(img_feat), torch.from_numpy(img_pos_feat)
 
     
     
     def __getitem__(self, idx):
-        # YOUR CODE HERE:  write the return of one item of the batch conataining the elements denoted in the return statement
+        # YOUR CODE HERE:  write the return of one item of the batch containing the elements denoted in the return statement
         # HINT: use _load_img_feature
 
+        data_id = self.data.ids[idx]
+        label = self.data.labels[idx]
+        text = self.data.text[idx]
+        
+        img_feat = self.data.img_feats[idx]
+        img_pos_feat = self.data.img_pos_feats[idx]
+        
         return {
             'img_feat': img_feat,
             'img_pos_feat': img_pos_feat,
@@ -126,14 +174,20 @@ class MemeDataset(data.Dataset):
         def collate_fn(samples):
             # samples is a list of dictionaries of the form returned by __get_item__()
             # YOUR CODE HERE: Create separate lists for each element by unpacking
+            data_ids, labels, texts, img_feats, img_pos_feats = zip(*[(item["data_id"], item["label"], item["text"], item["img_feat"], item["img_pos_feat"]) 
+                                                                       for item in samples])            
 
             # YOUR CODE HERE:  Pad 'img_feat' and 'img_pos_feat' tensors using pad_sequence
+            img_feat = pad_sequence(img_feats, batch_first=True, padding_value=0)
+            img_pos_feat = pad_sequence(img_pos_feats, batch_first=True, padding_value=0)
 
             # Tokenize and pad text
             if self.text_padding is not None:
                 texts = self.text_padding(texts)
             
             # YOUR CODE HERE:  Stack labels and data_ids into tensors (list --> tensor)
+            data_ids = torch.Tensor(list(data_ids))
+            labels = torch.Tensor(list(labels))
 
             # Text input
             input_ids = texts['input_ids']

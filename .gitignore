@@ -4,3 +4,15 @@ Hateful Memes paper.pdf
 data/submission_format_phase_1.csv
 
 data/XjiOc5ycDBRRNwbhRlgH.zip
+
+.vscode/
+
+dataset/
+
+papers/
+
+model/__pycache__/
+
+utils/__pycache__/
+
+model_checkpoints/

@@ -28,6 +28,20 @@ def standard_metrics_binary(probs, labels, threshold=0.5, add_aucroc=True, add_o
     Probabilities and labels are expected to be pytorch tensors.
     """
     # YOUR CODE HERE:  write code to calculate accuracy, precision, recall, F1 and auroc. Return in the dictionary 'metrics'
+    metrics = {}
+    preds = (probs>threshold).int()
+
+    metrics["accuracy"] = (preds == labels).float().mean()
+    tp = ((preds==1) & (labels==1)).sum().float()
+    fp = ((preds==0) & (labels==1)).sum().float()
+    fn = ((preds==1) & (labels==0)).sum().float()
+    metrics["precision"] = tp/(tp + fp)
+    metrics["recall"] = tp/(tp + fn)
+
+    metrics["f1"] = 2 * metrics["precision"] *  metrics["recall"] / (metrics["precision"] + metrics["recall"])
+
+    if add_aucroc:
+        metrics["aucroc"] = aucroc(probs, labels)
 
     return metrics
 
@@ -50,13 +64,17 @@ def aucroc(probs, labels):
     Inputs are expected to be pytorch tensors (can be cuda or cpu)
     """
     # YOUR CODE HERE:  compute the aucroc_score and return it
-    return aucroc_score
+    labels = labels.detach().cpu().numpy()
+    probs = probs.detach().cpu().numpy()
+    return roc_auc_score(labels, probs)
 
 
 if __name__ == '__main__':
 
-    num_classes = 4
+    num_classes = 2
+    # generate probs
     probs = torch.randn(size=(1000,num_classes))
     probs = F.softmax(probs, dim=-1)
-    labels = torch.multinomial(probs, num_samples=1).squeeze() * 0
-    print("Metrics", standard_metrics(probs, labels))
+    # generate labels
+    labels = (torch.multinomial(probs, num_samples=1).squeeze() > 0.5).long()
+    print("Metrics", standard_metrics(probs[:,1], labels))
