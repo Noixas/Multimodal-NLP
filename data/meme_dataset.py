@@ -51,7 +51,7 @@ class MemeDataset(data.Dataset):
         self.text_padding = text_padding
         self.compact_batch = compact_batch
         self.confidence_threshold = confidence_threshold
-        
+        self.return_ids = True
         self._prepare_data_list()
 
     

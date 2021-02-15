@@ -42,6 +42,11 @@ def standard_metrics_binary(probs, labels, threshold=0.5, add_aucroc=True, add_o
 
     if add_aucroc:
         metrics["aucroc"] = aucroc(probs, labels)
+    
+    if add_optimal_acc:
+        metrics["optimal_accuracy"] = -1 #TODO
+
+    metrics["optimal_threshold"] = -1 #TODO
 
     return metrics
 

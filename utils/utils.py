@@ -54,7 +54,7 @@ def log_tensorboard(config, writer, model, epoch, iters, total_iters, loss, metr
             
         else:
             writer.add_scalar('Validation/Loss', loss, epoch)
-            writer.add_scalar('Validation/F1', metrics['F1'], epoch)
+            writer.add_scalar('Validation/F1', metrics['f1'], epoch)
             writer.add_scalar('Validation/Recall', metrics['recall'], epoch)
             writer.add_scalar('Validation/Precision', metrics['precision'], epoch)
             writer.add_scalar('Validation/Accuracy', metrics['accuracy'], epoch)
@@ -71,8 +71,8 @@ def print_stats(config, epoch, train_metrics, train_loss, val_metrics, val_loss,
           \ntrain_loss = {:.4f},  train_acc = {:.4f},  train_prec = {:.4f},  train_recall = {:.4f},  train_f1 = {:.4f},  train_aucroc = {:.4f},  train_opt_accuracy = {:.4f},  train_threshold = {:.4f}  \
           \neval_loss = {:.4f},  eval_acc = {:.4f},  eval_prec = {:.4f},  eval_recall = {:.4f},  eval_f1 = {:.4f},  eval_aucroc = {:.4f},  eval_opt_accuracy = {:.4f},  eval_threshold = {:.4f}  \
               \nlr  =  {:.8f}\nElapsed Time:  {:0>2}:{:0>2}:{:05.2f}"
-                     .format(epoch, config['max_epoch'], train_loss, train_metrics['accuracy'], train_metrics['precision'], train_metrics['recall'], train_metrics['F1'], train_metrics['aucroc'], train_metrics['optimal_accuracy'], train_metrics['optimal_threshold'],
-                     val_loss, val_metrics['accuracy'], val_metrics['precision'], val_metrics['recall'], val_metrics['F1'], val_metrics['aucroc'], val_metrics['optimal_accuracy'], val_metrics['optimal_threshold'], lr, hours,minutes,seconds))
+                     .format(epoch, config['max_epoch'], train_loss, train_metrics['accuracy'], train_metrics['precision'], train_metrics['recall'], train_metrics['f1'], train_metrics['aucroc'], train_metrics['optimal_accuracy'], train_metrics['optimal_threshold'],
+                     val_loss, val_metrics['accuracy'], val_metrics['precision'], val_metrics['recall'], val_metrics['f1'], val_metrics['aucroc'], val_metrics['optimal_accuracy'], val_metrics['optimal_threshold'], lr, hours,minutes,seconds))
         
         
 
@@ -88,7 +88,7 @@ def print_test_stats(test_metrics, val_metrics=None, test=False):
         print("{} AUC-ROC of best model = {:.3f}".format(name, metric_dict['aucroc']*100))
         print("{} precision of best model = {:.3f}".format(name, metric_dict['precision']*100))
         print("{} recall of best model = {:.3f}".format(name, metric_dict['recall']*100))
-        print("{} f1 of best model = {:.3f}\n".format(name, metric_dict['F1']*100))
+        print("{} f1 of best model = {:.3f}\n".format(name, metric_dict['f1']*100))
 
     if val_metrics is not None:
         _print_res(test_metrics, val=False)
