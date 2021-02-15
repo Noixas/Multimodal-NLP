@@ -31,15 +31,15 @@ def standard_metrics_binary(probs, labels, threshold=0.5, add_aucroc=True, add_o
     metrics = {}
     preds = (probs>threshold).int()
 
-    metrics["accuracy"] = (preds == labels).float().mean()
+    metrics["accuracy"] = (preds == labels).float().mean().item()
     tp = ((preds==1) & (labels==1)).sum().float()
     fp = ((preds==0) & (labels==1)).sum().float()
     fn = ((preds==1) & (labels==0)).sum().float()
-    metrics["precision"] = tp/(tp + fp)
-    metrics["recall"] = tp/(tp + fn)
+    metrics["precision"] = (tp/(tp + fp)).item()
+    metrics["recall"] = (tp/(tp + fn)).item()
 
     metrics["f1"] = 2 * metrics["precision"] *  metrics["recall"] / (metrics["precision"] + metrics["recall"])
-
+    
     if add_aucroc:
         metrics["aucroc"] = aucroc(probs, labels)
     
