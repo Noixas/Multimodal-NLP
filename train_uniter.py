@@ -389,7 +389,7 @@ class TrainerUniter():
         metric_dict["train"]["loss"] = sum(self.train_loss)/len(self.train_loss) if isinstance(self.train_loss, list) else self.train_loss
         if hasattr(self, "test_metrics") and len(self.test_metrics) > 0:
             metric_dict["test"] = self.test_metrics
-
+        
         with open(metric_export_file, "w") as f:
             json.dump(metric_dict, f, indent=4)
 

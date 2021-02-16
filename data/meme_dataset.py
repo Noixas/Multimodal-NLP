@@ -1,3 +1,4 @@
+from tokenize import Double
 import torch
 import torch.utils.data as data
 import numpy as np
@@ -50,7 +51,7 @@ class MemeDataset(data.Dataset):
         self.text_padding = text_padding
         self.compact_batch = compact_batch
         self.confidence_threshold = confidence_threshold
-
+        self.return_ids = True
         self._prepare_data_list()
 
     
@@ -73,6 +74,7 @@ class MemeDataset(data.Dataset):
 
         # YOUR CODE HERE:  load the object lists from self.json_list
         self.data.ids = [example["id"] for example in self.json_list]
+        self.data.return_ids = True 
         self.data.labels = [example.get("label", -1) for example in self.json_list] # if label doesn't exist, use -1 as default
         self.data.text = [example["text"] for example in self.json_list]
         self.data.imgs = [example["img"] for example in self.json_list]
@@ -102,7 +104,7 @@ class MemeDataset(data.Dataset):
     def __len__(self):
         # YOUR CODE HERE:  mandatory. 
         return len(self.data.ids)
-
+    
 
     def _expand_id(self, img_id):
         # YOUR CODE HERE:  Add trailing zeros to the given id (check file names) using zfill
@@ -116,7 +118,7 @@ class MemeDataset(data.Dataset):
         img_feat = np.load(os.path.join(self.feature_dir, img_id + ".npy"))
         # the loaded *_info.npy file is a 0-d array, so we use item() to retrieve the dictionary
         img_feat_info = np.load(os.path.join(self.feature_dir, img_id + "_info.npy"), allow_pickle=True).item()
-
+        
         # YOUR CODE HERE:  get the x and y coordinates from 'img_feat_info['bbox']'
         
         # retrieve a matrix where each row i represents [x1, y1, x2, y2] coords (I suppose) of the ith object from the img
@@ -141,7 +143,8 @@ class MemeDataset(data.Dataset):
         # compute w*h
         img_pos_feat[:, 6] = img_pos_feat[:, 4] * img_pos_feat[:, 5] 
         # FIXME what should be the type of img_feat and img_pos_feat? ndarray? torch tensor?
-        return torch.from_numpy(img_feat), torch.from_numpy(img_pos_feat)
+
+        return torch.from_numpy(img_feat).float(), torch.from_numpy(img_pos_feat).float()
 
     
     
