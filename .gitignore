@@ -16,3 +16,9 @@ model/__pycache__/
 utils/__pycache__/
 
 model_checkpoints/
+
+.ipynb_checkpoints/
+
+data/__pycache__/
+
+train_dev_objects.csv
