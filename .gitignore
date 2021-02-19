@@ -23,3 +23,5 @@ data/__pycache__/
 train_dev_objects.csv
 
 *.pt
+
+vis_checkpoints/events.out.tfevents.1613731115.1c119543c823.1206.0

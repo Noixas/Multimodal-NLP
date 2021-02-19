@@ -32,7 +32,8 @@ class MemeDataset(data.Dataset):
                  text_preprocess = None,
                  text_padding = None,
                  compact_batch: bool = True,
-                 confidence_threshold : float = 0.0):
+                 confidence_threshold : float = 0.0,
+                 filter_text = False):
         """
         Inputs:
             filepath - Filepath to the ".jsonl" file which stores a list of all data points.
@@ -52,7 +53,12 @@ class MemeDataset(data.Dataset):
         self.compact_batch = compact_batch
         self.confidence_threshold = confidence_threshold
         self.return_ids = True
+        self.filter_text = filter_text
+        
+        print("filter text", self.filter_text)
+
         self._prepare_data_list()
+
 
     
     
@@ -80,7 +86,6 @@ class MemeDataset(data.Dataset):
         self.data.imgs = [example["img"] for example in self.json_list]
 
         # YOUR CODE HERE:  Check if all image features' and image features' info files exist
-        # Honestly, I don't exactly understand what Shaan expected from us here.
         for img_id in self.data.ids:
             img_id = self._expand_id(img_id) 
 
@@ -119,11 +124,24 @@ class MemeDataset(data.Dataset):
         # the loaded *_info.npy file is a 0-d array, so we use item() to retrieve the dictionary
         img_feat_info = np.load(os.path.join(self.feature_dir, img_id + "_info.npy"), allow_pickle=True).item()
         
+        
         # YOUR CODE HERE:  get the x and y coordinates from 'img_feat_info['bbox']'
         
-        # retrieve a matrix where each row i represents [x1, y1, x2, y2] coords (I suppose) of the ith object from the img
-        coords = img_feat_info["bbox"]
         
+
+        if self.filter_text: # remove bounding boxes containing text
+            object_ids = img_feat_info["objects_id"]
+
+            # get indices of text bounding boxes, the object id of text is 1179
+            text_obj_ids = [i for i, obj_id in enumerate(object_ids) if obj_id==1179]
+
+            # remove text bounding boxes
+            mask = np.ones(object_ids.size, dtype=bool)
+            mask[text_obj_ids] = False
+            coords = img_feat_info["bbox"][mask, :]
+        else:
+            # retrieve a matrix where each row i represents [x1, y1, x2, y2] coords (I suppose) of the ith object from the img
+            coords = img_feat_info["bbox"]
         
         if normalize:
             # YOUR CODE HERE:  normalize the coordinates with image width and height
@@ -142,7 +160,6 @@ class MemeDataset(data.Dataset):
         img_pos_feat[:, 5] = coords[:,3] - coords[:,1]
         # compute w*h
         img_pos_feat[:, 6] = img_pos_feat[:, 4] * img_pos_feat[:, 5] 
-        # FIXME what should be the type of img_feat and img_pos_feat? ndarray? torch tensor?
 
         return torch.from_numpy(img_feat).float(), torch.from_numpy(img_pos_feat).float()
 
@@ -240,6 +257,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--filepath", type=str, help="Path to jsonl file of dataset", required=True)
     parser.add_argument('--feature_dir', type=str, help='Directory containing image features', required=True)
+    parser.add_argument('--filter_text', help='Filter out bounding boxes around text', action='store_true')
     args = parser.parse_args()
 
     # Tokenize
@@ -249,7 +267,9 @@ if __name__ == '__main__':
     dataset = MemeDataset(filepath=args.filepath,
                           feature_dir=args.feature_dir,
                           text_padding=tokenizer_func,
-                          confidence_threshold=0.4)
+                          confidence_threshold=0.4,
+                          filter_text=args.filter_text)
+
     data_loader = data.DataLoader(dataset, batch_size=32, collate_fn=dataset.get_collate_fn(), sampler=None)
     logger.info("Length of data loader: %i" % len(data_loader))
     try:

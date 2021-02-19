@@ -554,7 +554,7 @@ if __name__ == '__main__':
                           help='dimen of FC layer"')
     parser.add_argument('--dropout', type=float, default=0.2,
                         help='Standard dropout regularization')
-
+    parser.add_argument('--filter_text', help='Filter out bounding boxes around text', action='store_true')
 
 
     args, unparsed = parser.parse_known_args()
@@ -605,11 +605,11 @@ if __name__ == '__main__':
 
     # Prepare the datasets and dataloaders for training and evaluation
     train_dataset = MemeDataset(filepath=os.path.join(config['data_path'], 'train.jsonl'),
-                                feature_dir=config['feature_path'], text_padding=tokenizer_func)
+                                feature_dir=config['feature_path'], text_padding=tokenizer_func, filter_text=config["filter_text"])
     val_dataset = MemeDataset(filepath=os.path.join(config['data_path'], 'dev_seen.jsonl'),
-                              feature_dir=config['feature_path'], text_padding=tokenizer_func)
+                              feature_dir=config['feature_path'], text_padding=tokenizer_func, filter_text=config["filter_text"])
     test_dataset = MemeDataset(filepath=os.path.join(config['data_path'], 'test_seen.jsonl'),
-                               feature_dir=config['feature_path'], text_padding=tokenizer_func)
+                               feature_dir=config['feature_path'], text_padding=tokenizer_func, filter_text=config["filter_text"])
     
     config['train_loader'] = data.DataLoader(train_dataset, batch_size=config['batch_size'], num_workers=config['num_workers'], collate_fn=train_dataset.get_collate_fn(), shuffle=True, pin_memory=True)
     config['val_loader'] = data.DataLoader(val_dataset, batch_size=config['batch_size'], num_workers=config['num_workers'], collate_fn=val_dataset.get_collate_fn())
