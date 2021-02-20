@@ -562,6 +562,7 @@ if __name__ == '__main__':
     parser.add_argument('--dropout', type=float, default=0.2,
                         help='Standard dropout regularization')
     parser.add_argument('--filter_text', help='Filter out bounding boxes around text', action='store_true')
+    parser.add_argument('--normalize_img', help='Normalize images by dividing them by their height and width. Default=True', action='store_false')
 
 
     args, unparsed = parser.parse_known_args()
