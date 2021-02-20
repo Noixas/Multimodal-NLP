@@ -27,3 +27,5 @@ train_dev_objects.csv
 vis_checkpoints/events.out.tfevents.1613731115.1c119543c823.1206.0
 
 model_checkpoints/
+
+*.zip

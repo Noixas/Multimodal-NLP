@@ -1,3 +1,4 @@
+import wandb
 import argparse
 import os
 import time
@@ -33,6 +34,8 @@ from model.model import UniterModel, UniterConfig
 from utils.const import IMG_DIM, IMG_LABEL_DIM
 
 
+
+
 class TrainerUniter():
 
     def __init__(self, config):
@@ -61,6 +64,7 @@ class TrainerUniter():
 
     def init_training_params(self):
         self.init_model()
+        wandb.watch(self.model)
         self.model_saver = ModelSaver(self.model_file)
 
         self.init_optimizer()
@@ -266,6 +270,8 @@ class TrainerUniter():
             LOGGER.info("New High Score! Saving model...")
             self.best_val_metrics = self.val_metrics
             self.best_val_loss = self.val_loss
+            wandb.log({'Best val metrics':self.best_val_metrics,'Best val loss':self.best_val_loss })
+
             if not self.config["no_model_checkpoints"]:
                 self.model_saver.save(self.model)
 
@@ -467,8 +473,9 @@ class TrainerUniter():
 
 
 
-
 if __name__ == '__main__':
+    wandb.init(project="multimodal-nlp2")
+    wandb.tensorboard.patch(root_logdir='./vis_checkpoints',pytorch=True,tensorboardX=False)
     parser = argparse.ArgumentParser()
     defaults=dict()
 
@@ -559,7 +566,7 @@ if __name__ == '__main__':
 
     args, unparsed = parser.parse_known_args()
     config = args.__dict__
-
+    wandb.config.update(config)
     config['device'] = get_device()
     config['n_classes'] = 2 if config['loss_func'] == 'ce' else 1
 
@@ -619,6 +626,8 @@ if __name__ == '__main__':
     try:
         trainer = TrainerUniter(config)
         trainer.train_main()
+        wandb.save('vis_checkpoints/*', base_path="vis_checkpoints/")
+        wandb.finish()
     except KeyboardInterrupt:
         LOGGER.warning("Keyboard interrupt by user detected...\nClosing the tensorboard writer!")
         config['writer'].close()

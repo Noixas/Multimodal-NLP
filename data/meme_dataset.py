@@ -116,7 +116,7 @@ class MemeDataset(data.Dataset):
         return str(img_id).zfill(5)
 
 
-    def _load_img_feature(self, img_id, normalize=False):
+    def _load_img_feature(self, img_id, normalize=True):
         
         img_id = self._expand_id(img_id)
         # YOUR CODE HERE:  Load image features and image feats info in 'img_feat' and 'img_feat_info' (i.e., .npy and _info.npy files) using _load_img_feature
