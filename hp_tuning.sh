@@ -28,7 +28,7 @@ for learning_rate in $lrs; do
                 # Changing hyperparams
                 --lr ${learning_rate} 
                 --dropout ${dropout}
-                --pos_wt %{pos_weight}
+                --pos_wt ${pos_weight}
                 )
 
             python -u train_uniter.py "${args[@]}"
