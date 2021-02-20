@@ -139,10 +139,11 @@ class MemeDataset(data.Dataset):
             mask = np.ones(object_ids.size, dtype=bool)
             mask[text_obj_ids] = False
             coords = img_feat_info["bbox"][mask, :]
+            img_feat = img_feat[mask, :]
         else:
             # retrieve a matrix where each row i represents [x1, y1, x2, y2] coords (I suppose) of the ith object from the img
             coords = img_feat_info["bbox"]
-        
+            
         if normalize:
             # YOUR CODE HERE:  normalize the coordinates with image width and height
             coords[:,[0, 2]] = coords[:,[0, 2]] / img_feat_info["image_width"]
