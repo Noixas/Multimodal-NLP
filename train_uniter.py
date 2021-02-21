@@ -261,6 +261,7 @@ class TrainerUniter():
             self.config['model_path'], self.config['model_save_name'].rsplit(".", 1)[0] + file_postfix)
         with open(filepath, "w") as f:
             f.write(file_string)
+        wandb.save(filepath) #Upload file to wandb
 
     def check_early_stopping(self):
         self.this_metric = self.val_loss if self.config[
@@ -570,7 +571,7 @@ if __name__ == '__main__':
     # New parameters by team
     parser.add_argument('--filter_text', action='store_true',
                         help='Filter out bounding boxes around text')
-    parser.add_argument('--normalize_img', action='store_false',
+    parser.add_argument('--no_normalize_img', action='store_false',
                         help='Normalize images by dividing them by their height and width. Default=True')
     parser.add_argument('--train_filename', type=str, default='train.jsonl',
                         help='The name of the trainin json file to load.')

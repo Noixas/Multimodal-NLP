@@ -62,28 +62,84 @@ class MemeDataset(data.Dataset):
         self._prepare_data_list()
 
     def upsample_confounders(self):
+        SEED = 2021
         multiplier = self.upsample_multiplier
         # read data
         train_data_df = pd.read_json(self.filepath, lines=True)
         # Get rows with duplicated text.
         duplicated_text = train_data_df[train_data_df['text'].duplicated(
             keep=False)]
+
+
+        #################################
+        #Upsample not hateful only
+        #################################
+        # # Explicitely get the text of the hateful memes, since some duplicated text appears only in non hateful memes.
+        # text_confounders = duplicated_text.loc[(
+        #     duplicated_text['label'] == 1)]['text']
+        # # Get rows of non hateful memes that contain duplicated text.
+        # rows_label_0 = duplicated_text.loc[(duplicated_text['label'] == 0)]
+        # # Get rows with label 0 that their text appeared in hateful memes.
+        # rows_confounders = rows_label_0.loc[rows_label_0['text'].apply(
+        #     (lambda x: any(item for item in text_confounders if item in x)))]
+
+        # len_rows_confounders = len(rows_confounders)
+        
+        # # Create an upsample of data by sampling with replacement and reseting index
+        # rows_confounders_upsampled = rows_confounders.sample(
+        #     n=len_rows_confounders*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
+        # print("Confounders upsampled by", str(multiplier), "times. \n From", str(
+        #     len_rows_confounders), " samples to", str(len(rows_confounders_upsampled)))
+
+        
+
+
+
+        #################################
+        #Upsample both parts of confounders, hateful and non hateful
+        #################################
         # Explicitely get the text of the hateful memes, since some duplicated text appears only in non hateful memes.
-        text_confounders = duplicated_text.loc[(
-            duplicated_text['label'] == 1)]['text']
-        # Get rows of non hateful memes that contain duplicated text.
+        text_confounders_label1 = duplicated_text.loc[(
+            duplicated_text['label'] == 1)]
+        text_confounders = text_confounders_label1['text']
+         # Get rows of non hateful memes that contain duplicated text.
         rows_label_0 = duplicated_text.loc[(duplicated_text['label'] == 0)]
         # Get rows with label 0 that their text appeared in hateful memes.
         rows_confounders = rows_label_0.loc[rows_label_0['text'].apply(
             (lambda x: any(item for item in text_confounders if item in x)))]
 
         len_rows_confounders = len(rows_confounders)
-        SEED = 2021
+        len_rows_confounders_l1 = len(text_confounders_label1)
+        
         # Create an upsample of data by sampling with replacement and reseting index
-        rows_confounders_upsampled = rows_confounders.sample(
+        rows_confounders_upsampled_label_0 = rows_confounders.sample(
             n=len_rows_confounders*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
+        rows_confounders_upsampled_label_1=text_confounders_label1.sample(
+            n=len_rows_confounders_l1*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
+
+        rows_confounders_upsampled = pd.concat([rows_confounders_upsampled_label_0,rows_confounders_upsampled_label_1])
+
         print("Confounders upsampled by", str(multiplier), "times. \n From", str(
-            len_rows_confounders), " samples to", str(len(rows_confounders_upsampled)))
+            len_rows_confounders+len_rows_confounders_l1), " samples to", str(len(rows_confounders_upsampled)))
+        
+
+
+        
+        
+        #################################
+        #Upsample both hateful and not hateful
+        #################################
+        # len_rows_confounders = len(duplicated_text)        
+        # # Create an upsample of data by sampling with replacement and reseting index
+        # rows_confounders_upsampled = duplicated_text.sample(
+        #     n=len_rows_confounders*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
+        # print("Confounders upsampled by", str(multiplier), "times. \n From", str(
+        #     len_rows_confounders), " samples to", str(len(rows_confounders_upsampled)))
+        
+
+
+
+
         # Add new upsamples list to main data
         save_new_confounders_data = pd.concat(
             [rows_confounders_upsampled, train_data_df])
@@ -145,7 +201,7 @@ class MemeDataset(data.Dataset):
 
         # YOUR CODE HERE:  Iterate over data ids and load img_feats and img_pos_feats into lists (defined above) using _load_img_feature
         both_img_feats = [(self._load_img_feature(
-            img_id, normalize=wandb.config.normalize_img)) for img_id in self.data.ids]
+            img_id, normalize=wandb.config.no_normalize_img)) for img_id in self.data.ids]
         # FIXME something might be wrong here
         # split a list of tuples into two separate lists
         self.data.img_feats, self.data.img_pos_feats = zip(*both_img_feats)
