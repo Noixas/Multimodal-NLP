@@ -1,0 +1,1813 @@
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 1.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.2
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 03:21:05.080716 
+
+
+Epoch: 1/30,            
+train_loss = 0.6313,  train_acc = 0.6598,  train_prec = 0.1113,  train_recall = 0.6165,  train_f1 = 0.1886,  train_aucroc = 0.6036,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.6690,  eval_acc = 0.5760,  eval_prec = 0.3482,  eval_recall = 0.6277,  eval_f1 = 0.4479,  eval_aucroc = 0.6361,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001596
+Elapsed Time:  00:02:43.04
+
+Epoch: 2/30,            
+train_loss = 0.5250,  train_acc = 0.7527,  train_prec = 0.5436,  train_recall = 0.6939,  train_f1 = 0.6096,  train_aucroc = 0.7833,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.7464,  eval_acc = 0.5840,  eval_prec = 0.2551,  eval_recall = 0.7241,  eval_f1 = 0.3772,  eval_aucroc = 0.6716,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00003000
+Elapsed Time:  00:05:19.41
+
+Epoch: 3/30,            
+train_loss = 0.4369,  train_acc = 0.8013,  train_prec = 0.6542,  train_recall = 0.7538,  train_f1 = 0.7005,  train_aucroc = 0.8620,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9292,  eval_acc = 0.5680,  eval_prec = 0.1660,  eval_recall = 0.8039,  eval_f1 = 0.2752,  eval_aucroc = 0.6701,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002997
+Elapsed Time:  00:07:53.65
+
+Epoch: 4/30,            
+train_loss = 0.3363,  train_acc = 0.8549,  train_prec = 0.7575,  train_recall = 0.8203,  train_f1 = 0.7877,  train_aucroc = 0.9221,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9409,  eval_acc = 0.6280,  eval_prec = 0.4494,  eval_recall = 0.6894,  eval_f1 = 0.5441,  eval_aucroc = 0.6956,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002990
+Elapsed Time:  00:10:24.83
+
+Epoch: 5/30,            
+train_loss = 0.2571,  train_acc = 0.8898,  train_prec = 0.8387,  train_recall = 0.8491,  train_f1 = 0.8439,  train_aucroc = 0.9559,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.7897,  eval_acc = 0.6080,  eval_prec = 0.4130,  eval_recall = 0.6667,  eval_f1 = 0.5100,  eval_aucroc = 0.6953,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002979
+Elapsed Time:  00:12:56.53
+
+Epoch: 6/30,            
+train_loss = 0.1946,  train_acc = 0.9255,  train_prec = 0.8904,  train_recall = 0.8990,  train_f1 = 0.8947,  train_aucroc = 0.9743,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.8985,  eval_acc = 0.6480,  eval_prec = 0.4899,  eval_recall = 0.7076,  eval_f1 = 0.5789,  eval_aucroc = 0.7174,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002963
+Elapsed Time:  00:15:27.40
+
+Epoch: 7/30,            
+train_loss = 0.1492,  train_acc = 0.9404,  train_prec = 0.9082,  train_recall = 0.9226,  train_f1 = 0.9154,  train_aucroc = 0.9851,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.3049,  eval_acc = 0.5980,  eval_prec = 0.2955,  eval_recall = 0.7300,  eval_f1 = 0.4207,  eval_aucroc = 0.6889,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002943
+Elapsed Time:  00:17:59.48
+
+Epoch: 8/30,            
+train_loss = 0.1198,  train_acc = 0.9544,  train_prec = 0.9314,  train_recall = 0.9395,  train_f1 = 0.9355,  train_aucroc = 0.9903,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.4765,  eval_acc = 0.6620,  eval_prec = 0.4534,  eval_recall = 0.7671,  eval_f1 = 0.5700,  eval_aucroc = 0.7130,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002919
+Elapsed Time:  00:20:29.69
+
+Epoch: 9/30,            
+train_loss = 0.0946,  train_acc = 0.9641,  train_prec = 0.9533,  train_recall = 0.9461,  train_f1 = 0.9497,  train_aucroc = 0.9937,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.6531,  eval_acc = 0.6500,  eval_prec = 0.4130,  eval_recall = 0.7727,  eval_f1 = 0.5383,  eval_aucroc = 0.7069,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002890
+Elapsed Time:  00:23:00.21
+
+Epoch: 10/30,            
+train_loss = 0.0836,  train_acc = 0.9702,  train_prec = 0.9599,  train_recall = 0.9564,  train_f1 = 0.9582,  train_aucroc = 0.9949,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.7586,  eval_acc = 0.6580,  eval_prec = 0.4494,  eval_recall = 0.7603,  eval_f1 = 0.5649,  eval_aucroc = 0.7003,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002858
+Elapsed Time:  00:25:30.43
+
+Epoch: 11/30,            
+train_loss = 0.0621,  train_acc = 0.9788,  train_prec = 0.9689,  train_recall = 0.9714,  train_f1 = 0.9701,  train_aucroc = 0.9966,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.9712,  eval_acc = 0.6460,  eval_prec = 0.4494,  eval_recall = 0.7303,  eval_f1 = 0.5564,  eval_aucroc = 0.6910,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002821
+Elapsed Time:  00:28:00.51
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 64.800
+Val AUC-ROC of best model = 71.740
+Val precision of best model = 48.988
+Val recall of best model = 70.760
+Val f1 of best model = 57.895
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 2.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.2
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 03:49:36.736858 
+
+
+Epoch: 1/30,            
+train_loss = 0.9101,  train_acc = 0.5686,  train_prec = 0.5982,  train_recall = 0.4239,  train_f1 = 0.4962,  train_aucroc = 0.6103,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1119,  eval_acc = 0.5600,  eval_prec = 0.2024,  eval_recall = 0.6849,  eval_f1 = 0.3125,  eval_aucroc = 0.6086,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001596
+Elapsed Time:  00:02:30.63
+
+Epoch: 2/30,            
+train_loss = 0.7729,  train_acc = 0.7142,  train_prec = 0.6959,  train_recall = 0.5817,  train_f1 = 0.6337,  train_aucroc = 0.7732,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1706,  eval_acc = 0.5960,  eval_prec = 0.3725,  eval_recall = 0.6619,  eval_f1 = 0.4767,  eval_aucroc = 0.6398,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00003000
+Elapsed Time:  00:05:05.71
+
+Epoch: 3/30,            
+train_loss = 0.6557,  train_acc = 0.7747,  train_prec = 0.7817,  train_recall = 0.6527,  train_f1 = 0.7114,  train_aucroc = 0.8484,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.2992,  eval_acc = 0.6280,  eval_prec = 0.4089,  eval_recall = 0.7163,  eval_f1 = 0.5206,  eval_aucroc = 0.6763,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002997
+Elapsed Time:  00:07:46.84
+
+Epoch: 4/30,            
+train_loss = 0.5249,  train_acc = 0.8306,  train_prec = 0.8400,  train_recall = 0.7260,  train_f1 = 0.7789,  train_aucroc = 0.9071,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1772,  eval_acc = 0.6280,  eval_prec = 0.5709,  eval_recall = 0.6380,  eval_f1 = 0.6026,  eval_aucroc = 0.6949,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002990
+Elapsed Time:  00:10:21.96
+
+Epoch: 5/30,            
+train_loss = 0.4102,  train_acc = 0.8733,  train_prec = 0.8851,  train_recall = 0.7854,  train_f1 = 0.8323,  train_aucroc = 0.9439,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1992,  eval_acc = 0.6180,  eval_prec = 0.4858,  eval_recall = 0.6522,  eval_f1 = 0.5568,  eval_aucroc = 0.6916,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002979
+Elapsed Time:  00:12:55.35
+
+Epoch: 6/30,            
+train_loss = 0.3304,  train_acc = 0.9009,  train_prec = 0.9112,  train_recall = 0.8274,  train_f1 = 0.8673,  train_aucroc = 0.9631,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.3828,  eval_acc = 0.6340,  eval_prec = 0.5263,  eval_recall = 0.6633,  eval_f1 = 0.5869,  eval_aucroc = 0.7051,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002963
+Elapsed Time:  00:15:27.64
+
+Epoch: 7/30,            
+train_loss = 0.2637,  train_acc = 0.9239,  train_prec = 0.9324,  train_recall = 0.8640,  train_f1 = 0.8969,  train_aucroc = 0.9765,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.2009,  eval_acc = 0.6240,  eval_prec = 0.3968,  eval_recall = 0.7153,  eval_f1 = 0.5104,  eval_aucroc = 0.6916,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002943
+Elapsed Time:  00:18:07.98
+
+Epoch: 8/30,            
+train_loss = 0.2081,  train_acc = 0.9393,  train_prec = 0.9480,  train_recall = 0.8885,  train_f1 = 0.9173,  train_aucroc = 0.9853,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.4111,  eval_acc = 0.6140,  eval_prec = 0.3279,  eval_recall = 0.7500,  eval_f1 = 0.4563,  eval_aucroc = 0.7211,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002919
+Elapsed Time:  00:20:43.96
+
+Epoch: 9/30,            
+train_loss = 0.1743,  train_acc = 0.9545,  train_prec = 0.9540,  train_recall = 0.9207,  train_f1 = 0.9370,  train_aucroc = 0.9896,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.4286,  eval_acc = 0.6560,  eval_prec = 0.4737,  eval_recall = 0.7358,  eval_f1 = 0.5764,  eval_aucroc = 0.7161,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002890
+Elapsed Time:  00:23:16.97
+
+Epoch: 10/30,            
+train_loss = 0.1548,  train_acc = 0.9604,  train_prec = 0.9606,  train_recall = 0.9301,  train_f1 = 0.9451,  train_aucroc = 0.9914,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.9053,  eval_acc = 0.6360,  eval_prec = 0.4291,  eval_recall = 0.7211,  eval_f1 = 0.5381,  eval_aucroc = 0.6991,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002858
+Elapsed Time:  00:25:48.64
+
+Epoch: 11/30,            
+train_loss = 0.1264,  train_acc = 0.9681,  train_prec = 0.9682,  train_recall = 0.9435,  train_f1 = 0.9557,  train_aucroc = 0.9943,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.2635,  eval_acc = 0.6620,  eval_prec = 0.5709,  eval_recall = 0.6912,  eval_f1 = 0.6253,  eval_aucroc = 0.7179,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002821
+Elapsed Time:  00:28:20.24
+
+Epoch: 12/30,            
+train_loss = 0.1385,  train_acc = 0.9609,  train_prec = 0.9629,  train_recall = 0.9296,  train_f1 = 0.9460,  train_aucroc = 0.9938,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.0709,  eval_acc = 0.6720,  eval_prec = 0.5992,  eval_recall = 0.6948,  eval_f1 = 0.6435,  eval_aucroc = 0.7194,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002781
+Elapsed Time:  00:30:51.67
+
+Epoch: 13/30,            
+train_loss = 0.1028,  train_acc = 0.9767,  train_prec = 0.9695,  train_recall = 0.9651,  train_f1 = 0.9673,  train_aucroc = 0.9961,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.5032,  eval_acc = 0.6260,  eval_prec = 0.4049,  eval_recall = 0.7143,  eval_f1 = 0.5168,  eval_aucroc = 0.6998,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002737
+Elapsed Time:  00:33:22.80
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 61.400
+Val AUC-ROC of best model = 72.111
+Val precision of best model = 32.794
+Val recall of best model = 75.000
+Val f1 of best model = 45.634
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 5.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.2
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 04:23:31.593767 
+
+
+Epoch: 1/30,            
+train_loss = 1.4265,  train_acc = 0.3845,  train_prec = 0.9122,  train_recall = 0.3567,  train_f1 = 0.5128,  train_aucroc = 0.5724,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.4510,  eval_acc = 0.5000,  eval_prec = 1.0000,  eval_recall = 0.4970,  eval_f1 = 0.6640,  eval_aucroc = 0.5903,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001596
+Elapsed Time:  00:02:31.11
+
+Epoch: 2/30,            
+train_loss = 1.1792,  train_acc = 0.5804,  train_prec = 0.8884,  train_recall = 0.4537,  train_f1 = 0.6006,  train_aucroc = 0.7689,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.7088,  eval_acc = 0.5960,  eval_prec = 0.6478,  eval_recall = 0.5818,  eval_f1 = 0.6130,  eval_aucroc = 0.6496,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00003000
+Elapsed Time:  00:05:04.20
+
+Epoch: 3/30,            
+train_loss = 0.9769,  train_acc = 0.7194,  train_prec = 0.8937,  train_recall = 0.5666,  train_f1 = 0.6935,  train_aucroc = 0.8554,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.9913,  eval_acc = 0.6160,  eval_prec = 0.6032,  eval_recall = 0.6132,  eval_f1 = 0.6082,  eval_aucroc = 0.6667,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002997
+Elapsed Time:  00:07:37.42
+
+Epoch: 4/30,            
+train_loss = 0.7781,  train_acc = 0.7955,  train_prec = 0.9192,  train_recall = 0.6500,  train_f1 = 0.7615,  train_aucroc = 0.9099,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.8353,  eval_acc = 0.6360,  eval_prec = 0.7166,  eval_recall = 0.6125,  eval_f1 = 0.6604,  eval_aucroc = 0.7018,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002990
+Elapsed Time:  00:10:10.14
+
+Epoch: 5/30,            
+train_loss = 0.6226,  train_acc = 0.8471,  train_prec = 0.9424,  train_recall = 0.7164,  train_f1 = 0.8140,  train_aucroc = 0.9402,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.5278,  eval_acc = 0.6320,  eval_prec = 0.6356,  eval_recall = 0.6255,  eval_f1 = 0.6305,  eval_aucroc = 0.6866,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002979
+Elapsed Time:  00:12:43.07
+
+Epoch: 6/30,            
+train_loss = 0.5061,  train_acc = 0.8825,  train_prec = 0.9546,  train_recall = 0.7698,  train_f1 = 0.8523,  train_aucroc = 0.9609,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.9208,  eval_acc = 0.6300,  eval_prec = 0.6032,  eval_recall = 0.6314,  eval_f1 = 0.6170,  eval_aucroc = 0.6898,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002963
+Elapsed Time:  00:15:15.15
+
+Epoch: 7/30,            
+train_loss = 0.4524,  train_acc = 0.9021,  train_prec = 0.9543,  train_recall = 0.8059,  train_f1 = 0.8738,  train_aucroc = 0.9696,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 3.9961,  eval_acc = 0.6480,  eval_prec = 0.5547,  eval_recall = 0.6749,  eval_f1 = 0.6089,  eval_aucroc = 0.6892,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002943
+Elapsed Time:  00:17:46.92
+
+Epoch: 8/30,            
+train_loss = 0.3545,  train_acc = 0.9307,  train_prec = 0.9636,  train_recall = 0.8586,  train_f1 = 0.9081,  train_aucroc = 0.9809,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 4.5625,  eval_acc = 0.6460,  eval_prec = 0.4939,  eval_recall = 0.7011,  eval_f1 = 0.5796,  eval_aucroc = 0.7042,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002919
+Elapsed Time:  00:20:18.35
+
+Epoch: 9/30,            
+train_loss = 0.3435,  train_acc = 0.9353,  train_prec = 0.9629,  train_recall = 0.8691,  train_f1 = 0.9136,  train_aucroc = 0.9835,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.1257,  eval_acc = 0.6360,  eval_prec = 0.4777,  eval_recall = 0.6901,  eval_f1 = 0.5646,  eval_aucroc = 0.6981,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002890
+Elapsed Time:  00:22:51.41
+
+Epoch: 10/30,            
+train_loss = 0.2907,  train_acc = 0.9474,  train_prec = 0.9652,  train_recall = 0.8950,  train_f1 = 0.9288,  train_aucroc = 0.9886,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.3523,  eval_acc = 0.6500,  eval_prec = 0.5304,  eval_recall = 0.6895,  eval_f1 = 0.5995,  eval_aucroc = 0.7002,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002858
+Elapsed Time:  00:25:22.82
+
+Epoch: 11/30,            
+train_loss = 0.2346,  train_acc = 0.9559,  train_prec = 0.9709,  train_recall = 0.9108,  train_f1 = 0.9399,  train_aucroc = 0.9927,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.2594,  eval_acc = 0.6480,  eval_prec = 0.5020,  eval_recall = 0.7006,  eval_f1 = 0.5849,  eval_aucroc = 0.7059,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002821
+Elapsed Time:  00:27:54.24
+
+Epoch: 12/30,            
+train_loss = 0.2257,  train_acc = 0.9626,  train_prec = 0.9742,  train_recall = 0.9246,  train_f1 = 0.9487,  train_aucroc = 0.9928,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.9941,  eval_acc = 0.6600,  eval_prec = 0.5101,  eval_recall = 0.7200,  eval_f1 = 0.5972,  eval_aucroc = 0.6936,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002781
+Elapsed Time:  00:30:26.74
+
+Epoch: 13/30,            
+train_loss = 0.2002,  train_acc = 0.9681,  train_prec = 0.9755,  train_recall = 0.9373,  train_f1 = 0.9560,  train_aucroc = 0.9943,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 4.1317,  eval_acc = 0.6540,  eval_prec = 0.6518,  eval_recall = 0.6492,  eval_f1 = 0.6505,  eval_aucroc = 0.7029,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002737
+Elapsed Time:  00:32:57.21
+
+Epoch: 14/30,            
+train_loss = 0.1973,  train_acc = 0.9669,  train_prec = 0.9742,  train_recall = 0.9354,  train_f1 = 0.9544,  train_aucroc = 0.9955,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 6.3969,  eval_acc = 0.6540,  eval_prec = 0.5587,  eval_recall = 0.6832,  eval_f1 = 0.6147,  eval_aucroc = 0.6896,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002689
+Elapsed Time:  00:35:28.01
+
+Epoch: 15/30,            
+train_loss = 0.1916,  train_acc = 0.9709,  train_prec = 0.9758,  train_recall = 0.9442,  train_f1 = 0.9598,  train_aucroc = 0.9949,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 8.2770,  eval_acc = 0.6360,  eval_prec = 0.4008,  eval_recall = 0.7444,  eval_f1 = 0.5211,  eval_aucroc = 0.7037,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002638
+Elapsed Time:  00:37:59.10
+
+Epoch: 16/30,            
+train_loss = 0.1634,  train_acc = 0.9755,  train_prec = 0.9811,  train_recall = 0.9515,  train_f1 = 0.9661,  train_aucroc = 0.9965,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 10.6401,  eval_acc = 0.6040,  eval_prec = 0.3117,  eval_recall = 0.7333,  eval_f1 = 0.4375,  eval_aucroc = 0.6756,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002584
+Elapsed Time:  00:40:30.52
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 64.800
+Val AUC-ROC of best model = 70.586
+Val precision of best model = 50.202
+Val recall of best model = 70.056
+Val f1 of best model = 58.491
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 1.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.3
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 05:04:33.717802 
+
+
+Epoch: 1/30,            
+train_loss = 0.6313,  train_acc = 0.6598,  train_prec = 0.1113,  train_recall = 0.6165,  train_f1 = 0.1886,  train_aucroc = 0.6036,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.6690,  eval_acc = 0.5760,  eval_prec = 0.3482,  eval_recall = 0.6277,  eval_f1 = 0.4479,  eval_aucroc = 0.6361,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001596
+Elapsed Time:  00:02:30.36
+
+Epoch: 2/30,            
+train_loss = 0.5250,  train_acc = 0.7527,  train_prec = 0.5436,  train_recall = 0.6939,  train_f1 = 0.6096,  train_aucroc = 0.7833,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.7464,  eval_acc = 0.5840,  eval_prec = 0.2551,  eval_recall = 0.7241,  eval_f1 = 0.3772,  eval_aucroc = 0.6716,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00003000
+Elapsed Time:  00:05:02.70
+
+Epoch: 3/30,            
+train_loss = 0.4369,  train_acc = 0.8013,  train_prec = 0.6542,  train_recall = 0.7538,  train_f1 = 0.7005,  train_aucroc = 0.8620,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9292,  eval_acc = 0.5680,  eval_prec = 0.1660,  eval_recall = 0.8039,  eval_f1 = 0.2752,  eval_aucroc = 0.6701,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002997
+Elapsed Time:  00:07:35.28
+
+Epoch: 4/30,            
+train_loss = 0.3363,  train_acc = 0.8549,  train_prec = 0.7575,  train_recall = 0.8203,  train_f1 = 0.7877,  train_aucroc = 0.9221,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9409,  eval_acc = 0.6280,  eval_prec = 0.4494,  eval_recall = 0.6894,  eval_f1 = 0.5441,  eval_aucroc = 0.6956,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002990
+Elapsed Time:  00:10:06.48
+
+Epoch: 5/30,            
+train_loss = 0.2571,  train_acc = 0.8898,  train_prec = 0.8387,  train_recall = 0.8491,  train_f1 = 0.8439,  train_aucroc = 0.9559,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.7897,  eval_acc = 0.6080,  eval_prec = 0.4130,  eval_recall = 0.6667,  eval_f1 = 0.5100,  eval_aucroc = 0.6953,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002979
+Elapsed Time:  00:12:38.97
+
+Epoch: 6/30,            
+train_loss = 0.1946,  train_acc = 0.9255,  train_prec = 0.8904,  train_recall = 0.8990,  train_f1 = 0.8947,  train_aucroc = 0.9743,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.8985,  eval_acc = 0.6480,  eval_prec = 0.4899,  eval_recall = 0.7076,  eval_f1 = 0.5789,  eval_aucroc = 0.7174,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002963
+Elapsed Time:  00:15:10.73
+
+Epoch: 7/30,            
+train_loss = 0.1492,  train_acc = 0.9404,  train_prec = 0.9082,  train_recall = 0.9226,  train_f1 = 0.9154,  train_aucroc = 0.9851,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.3049,  eval_acc = 0.5980,  eval_prec = 0.2955,  eval_recall = 0.7300,  eval_f1 = 0.4207,  eval_aucroc = 0.6889,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002943
+Elapsed Time:  00:17:43.46
+
+Epoch: 8/30,            
+train_loss = 0.1198,  train_acc = 0.9544,  train_prec = 0.9314,  train_recall = 0.9395,  train_f1 = 0.9355,  train_aucroc = 0.9903,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.4765,  eval_acc = 0.6620,  eval_prec = 0.4534,  eval_recall = 0.7671,  eval_f1 = 0.5700,  eval_aucroc = 0.7130,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002919
+Elapsed Time:  00:20:14.81
+
+Epoch: 9/30,            
+train_loss = 0.0946,  train_acc = 0.9641,  train_prec = 0.9533,  train_recall = 0.9461,  train_f1 = 0.9497,  train_aucroc = 0.9937,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.6531,  eval_acc = 0.6500,  eval_prec = 0.4130,  eval_recall = 0.7727,  eval_f1 = 0.5383,  eval_aucroc = 0.7069,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002890
+Elapsed Time:  00:22:46.23
+
+Epoch: 10/30,            
+train_loss = 0.0836,  train_acc = 0.9702,  train_prec = 0.9599,  train_recall = 0.9564,  train_f1 = 0.9582,  train_aucroc = 0.9949,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.7586,  eval_acc = 0.6580,  eval_prec = 0.4494,  eval_recall = 0.7603,  eval_f1 = 0.5649,  eval_aucroc = 0.7003,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002858
+Elapsed Time:  00:25:17.26
+
+Epoch: 11/30,            
+train_loss = 0.0621,  train_acc = 0.9788,  train_prec = 0.9689,  train_recall = 0.9714,  train_f1 = 0.9701,  train_aucroc = 0.9966,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.9712,  eval_acc = 0.6460,  eval_prec = 0.4494,  eval_recall = 0.7303,  eval_f1 = 0.5564,  eval_aucroc = 0.6910,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002821
+Elapsed Time:  00:27:48.38
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 64.800
+Val AUC-ROC of best model = 71.740
+Val precision of best model = 48.988
+Val recall of best model = 70.760
+Val f1 of best model = 57.895
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 2.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.3
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 05:32:53.671517 
+
+
+Epoch: 1/30,            
+train_loss = 0.9101,  train_acc = 0.5686,  train_prec = 0.5982,  train_recall = 0.4239,  train_f1 = 0.4962,  train_aucroc = 0.6103,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1119,  eval_acc = 0.5600,  eval_prec = 0.2024,  eval_recall = 0.6849,  eval_f1 = 0.3125,  eval_aucroc = 0.6086,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001596
+Elapsed Time:  00:02:30.17
+
+Epoch: 2/30,            
+train_loss = 0.7729,  train_acc = 0.7142,  train_prec = 0.6959,  train_recall = 0.5817,  train_f1 = 0.6337,  train_aucroc = 0.7732,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1706,  eval_acc = 0.5960,  eval_prec = 0.3725,  eval_recall = 0.6619,  eval_f1 = 0.4767,  eval_aucroc = 0.6398,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00003000
+Elapsed Time:  00:05:02.92
+
+Epoch: 3/30,            
+train_loss = 0.6557,  train_acc = 0.7747,  train_prec = 0.7817,  train_recall = 0.6527,  train_f1 = 0.7114,  train_aucroc = 0.8484,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.2992,  eval_acc = 0.6280,  eval_prec = 0.4089,  eval_recall = 0.7163,  eval_f1 = 0.5206,  eval_aucroc = 0.6763,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002997
+Elapsed Time:  00:07:36.06
+
+Epoch: 4/30,            
+train_loss = 0.5249,  train_acc = 0.8306,  train_prec = 0.8400,  train_recall = 0.7260,  train_f1 = 0.7789,  train_aucroc = 0.9071,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1772,  eval_acc = 0.6280,  eval_prec = 0.5709,  eval_recall = 0.6380,  eval_f1 = 0.6026,  eval_aucroc = 0.6949,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002990
+Elapsed Time:  00:10:08.74
+
+Epoch: 5/30,            
+train_loss = 0.4102,  train_acc = 0.8733,  train_prec = 0.8851,  train_recall = 0.7854,  train_f1 = 0.8323,  train_aucroc = 0.9439,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1992,  eval_acc = 0.6180,  eval_prec = 0.4858,  eval_recall = 0.6522,  eval_f1 = 0.5568,  eval_aucroc = 0.6916,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002979
+Elapsed Time:  00:12:41.51
+
+Epoch: 6/30,            
+train_loss = 0.3304,  train_acc = 0.9009,  train_prec = 0.9112,  train_recall = 0.8274,  train_f1 = 0.8673,  train_aucroc = 0.9631,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.3828,  eval_acc = 0.6340,  eval_prec = 0.5263,  eval_recall = 0.6633,  eval_f1 = 0.5869,  eval_aucroc = 0.7051,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002963
+Elapsed Time:  00:15:13.27
+
+Epoch: 7/30,            
+train_loss = 0.2637,  train_acc = 0.9239,  train_prec = 0.9324,  train_recall = 0.8640,  train_f1 = 0.8969,  train_aucroc = 0.9765,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.2009,  eval_acc = 0.6240,  eval_prec = 0.3968,  eval_recall = 0.7153,  eval_f1 = 0.5104,  eval_aucroc = 0.6916,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002943
+Elapsed Time:  00:17:46.27
+
+Epoch: 8/30,            
+train_loss = 0.2081,  train_acc = 0.9393,  train_prec = 0.9480,  train_recall = 0.8885,  train_f1 = 0.9173,  train_aucroc = 0.9853,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.4111,  eval_acc = 0.6140,  eval_prec = 0.3279,  eval_recall = 0.7500,  eval_f1 = 0.4563,  eval_aucroc = 0.7211,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002919
+Elapsed Time:  00:20:17.75
+
+Epoch: 9/30,            
+train_loss = 0.1743,  train_acc = 0.9545,  train_prec = 0.9540,  train_recall = 0.9207,  train_f1 = 0.9370,  train_aucroc = 0.9896,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.4286,  eval_acc = 0.6560,  eval_prec = 0.4737,  eval_recall = 0.7358,  eval_f1 = 0.5764,  eval_aucroc = 0.7161,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002890
+Elapsed Time:  00:22:50.45
+
+Epoch: 10/30,            
+train_loss = 0.1548,  train_acc = 0.9604,  train_prec = 0.9606,  train_recall = 0.9301,  train_f1 = 0.9451,  train_aucroc = 0.9914,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.9053,  eval_acc = 0.6360,  eval_prec = 0.4291,  eval_recall = 0.7211,  eval_f1 = 0.5381,  eval_aucroc = 0.6991,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002858
+Elapsed Time:  00:25:21.87
+
+Epoch: 11/30,            
+train_loss = 0.1264,  train_acc = 0.9681,  train_prec = 0.9682,  train_recall = 0.9435,  train_f1 = 0.9557,  train_aucroc = 0.9943,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.2635,  eval_acc = 0.6620,  eval_prec = 0.5709,  eval_recall = 0.6912,  eval_f1 = 0.6253,  eval_aucroc = 0.7179,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002821
+Elapsed Time:  00:27:52.98
+
+Epoch: 12/30,            
+train_loss = 0.1385,  train_acc = 0.9609,  train_prec = 0.9629,  train_recall = 0.9296,  train_f1 = 0.9460,  train_aucroc = 0.9938,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.0709,  eval_acc = 0.6720,  eval_prec = 0.5992,  eval_recall = 0.6948,  eval_f1 = 0.6435,  eval_aucroc = 0.7194,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002781
+Elapsed Time:  00:30:23.90
+
+Epoch: 13/30,            
+train_loss = 0.1028,  train_acc = 0.9767,  train_prec = 0.9695,  train_recall = 0.9651,  train_f1 = 0.9673,  train_aucroc = 0.9961,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.5032,  eval_acc = 0.6260,  eval_prec = 0.4049,  eval_recall = 0.7143,  eval_f1 = 0.5168,  eval_aucroc = 0.6998,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002737
+Elapsed Time:  00:32:54.78
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 61.400
+Val AUC-ROC of best model = 72.111
+Val precision of best model = 32.794
+Val recall of best model = 75.000
+Val f1 of best model = 45.634
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 5.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.3
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 06:06:20.215685 
+
+
+Epoch: 1/30,            
+train_loss = 1.4265,  train_acc = 0.3845,  train_prec = 0.9122,  train_recall = 0.3567,  train_f1 = 0.5128,  train_aucroc = 0.5724,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.4510,  eval_acc = 0.5000,  eval_prec = 1.0000,  eval_recall = 0.4970,  eval_f1 = 0.6640,  eval_aucroc = 0.5903,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001596
+Elapsed Time:  00:02:30.81
+
+Epoch: 2/30,            
+train_loss = 1.1792,  train_acc = 0.5804,  train_prec = 0.8884,  train_recall = 0.4537,  train_f1 = 0.6006,  train_aucroc = 0.7689,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.7088,  eval_acc = 0.5960,  eval_prec = 0.6478,  eval_recall = 0.5818,  eval_f1 = 0.6130,  eval_aucroc = 0.6496,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00003000
+Elapsed Time:  00:05:04.08
+
+Epoch: 3/30,            
+train_loss = 0.9769,  train_acc = 0.7194,  train_prec = 0.8937,  train_recall = 0.5666,  train_f1 = 0.6935,  train_aucroc = 0.8554,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.9913,  eval_acc = 0.6160,  eval_prec = 0.6032,  eval_recall = 0.6132,  eval_f1 = 0.6082,  eval_aucroc = 0.6667,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002997
+Elapsed Time:  00:07:36.95
+
+Epoch: 4/30,            
+train_loss = 0.7781,  train_acc = 0.7955,  train_prec = 0.9192,  train_recall = 0.6500,  train_f1 = 0.7615,  train_aucroc = 0.9099,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.8353,  eval_acc = 0.6360,  eval_prec = 0.7166,  eval_recall = 0.6125,  eval_f1 = 0.6604,  eval_aucroc = 0.7018,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002990
+Elapsed Time:  00:10:09.74
+
+Epoch: 5/30,            
+train_loss = 0.6226,  train_acc = 0.8471,  train_prec = 0.9424,  train_recall = 0.7164,  train_f1 = 0.8140,  train_aucroc = 0.9402,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.5278,  eval_acc = 0.6320,  eval_prec = 0.6356,  eval_recall = 0.6255,  eval_f1 = 0.6305,  eval_aucroc = 0.6866,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002979
+Elapsed Time:  00:12:42.12
+
+Epoch: 6/30,            
+train_loss = 0.5061,  train_acc = 0.8825,  train_prec = 0.9546,  train_recall = 0.7698,  train_f1 = 0.8523,  train_aucroc = 0.9609,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.9208,  eval_acc = 0.6300,  eval_prec = 0.6032,  eval_recall = 0.6314,  eval_f1 = 0.6170,  eval_aucroc = 0.6898,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002963
+Elapsed Time:  00:15:13.89
+
+Epoch: 7/30,            
+train_loss = 0.4524,  train_acc = 0.9021,  train_prec = 0.9543,  train_recall = 0.8059,  train_f1 = 0.8738,  train_aucroc = 0.9696,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 3.9961,  eval_acc = 0.6480,  eval_prec = 0.5547,  eval_recall = 0.6749,  eval_f1 = 0.6089,  eval_aucroc = 0.6892,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002943
+Elapsed Time:  00:17:45.66
+
+Epoch: 8/30,            
+train_loss = 0.3545,  train_acc = 0.9307,  train_prec = 0.9636,  train_recall = 0.8586,  train_f1 = 0.9081,  train_aucroc = 0.9809,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 4.5625,  eval_acc = 0.6460,  eval_prec = 0.4939,  eval_recall = 0.7011,  eval_f1 = 0.5796,  eval_aucroc = 0.7042,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002919
+Elapsed Time:  00:20:17.20
+
+Epoch: 9/30,            
+train_loss = 0.3435,  train_acc = 0.9353,  train_prec = 0.9629,  train_recall = 0.8691,  train_f1 = 0.9136,  train_aucroc = 0.9835,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.1257,  eval_acc = 0.6360,  eval_prec = 0.4777,  eval_recall = 0.6901,  eval_f1 = 0.5646,  eval_aucroc = 0.6981,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002890
+Elapsed Time:  00:22:49.73
+
+Epoch: 10/30,            
+train_loss = 0.2907,  train_acc = 0.9474,  train_prec = 0.9652,  train_recall = 0.8950,  train_f1 = 0.9288,  train_aucroc = 0.9886,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.3523,  eval_acc = 0.6500,  eval_prec = 0.5304,  eval_recall = 0.6895,  eval_f1 = 0.5995,  eval_aucroc = 0.7002,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002858
+Elapsed Time:  00:25:21.03
+
+Epoch: 11/30,            
+train_loss = 0.2346,  train_acc = 0.9559,  train_prec = 0.9709,  train_recall = 0.9108,  train_f1 = 0.9399,  train_aucroc = 0.9927,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.2594,  eval_acc = 0.6480,  eval_prec = 0.5020,  eval_recall = 0.7006,  eval_f1 = 0.5849,  eval_aucroc = 0.7059,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002821
+Elapsed Time:  00:27:52.20
+
+Epoch: 12/30,            
+train_loss = 0.2257,  train_acc = 0.9626,  train_prec = 0.9742,  train_recall = 0.9246,  train_f1 = 0.9487,  train_aucroc = 0.9928,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.9941,  eval_acc = 0.6600,  eval_prec = 0.5101,  eval_recall = 0.7200,  eval_f1 = 0.5972,  eval_aucroc = 0.6936,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002781
+Elapsed Time:  00:30:24.77
+
+Epoch: 13/30,            
+train_loss = 0.2002,  train_acc = 0.9681,  train_prec = 0.9755,  train_recall = 0.9373,  train_f1 = 0.9560,  train_aucroc = 0.9943,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 4.1317,  eval_acc = 0.6540,  eval_prec = 0.6518,  eval_recall = 0.6492,  eval_f1 = 0.6505,  eval_aucroc = 0.7029,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002737
+Elapsed Time:  00:32:55.76
+
+Epoch: 14/30,            
+train_loss = 0.1973,  train_acc = 0.9669,  train_prec = 0.9742,  train_recall = 0.9354,  train_f1 = 0.9544,  train_aucroc = 0.9955,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 6.3969,  eval_acc = 0.6540,  eval_prec = 0.5587,  eval_recall = 0.6832,  eval_f1 = 0.6147,  eval_aucroc = 0.6896,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002689
+Elapsed Time:  00:35:26.75
+
+Epoch: 15/30,            
+train_loss = 0.1916,  train_acc = 0.9709,  train_prec = 0.9758,  train_recall = 0.9442,  train_f1 = 0.9598,  train_aucroc = 0.9949,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 8.2770,  eval_acc = 0.6360,  eval_prec = 0.4008,  eval_recall = 0.7444,  eval_f1 = 0.5211,  eval_aucroc = 0.7037,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002638
+Elapsed Time:  00:37:57.58
+
+Epoch: 16/30,            
+train_loss = 0.1634,  train_acc = 0.9755,  train_prec = 0.9811,  train_recall = 0.9515,  train_f1 = 0.9661,  train_aucroc = 0.9965,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 10.6401,  eval_acc = 0.6040,  eval_prec = 0.3117,  eval_recall = 0.7333,  eval_f1 = 0.4375,  eval_aucroc = 0.6756,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002584
+Elapsed Time:  00:40:28.94
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 64.800
+Val AUC-ROC of best model = 70.586
+Val precision of best model = 50.202
+Val recall of best model = 70.056
+Val f1 of best model = 58.491
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 1.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.5
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 06:47:19.343793 
+
+
+Epoch: 1/30,            
+train_loss = 0.6313,  train_acc = 0.6598,  train_prec = 0.1113,  train_recall = 0.6165,  train_f1 = 0.1886,  train_aucroc = 0.6036,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.6690,  eval_acc = 0.5760,  eval_prec = 0.3482,  eval_recall = 0.6277,  eval_f1 = 0.4479,  eval_aucroc = 0.6361,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001596
+Elapsed Time:  00:02:30.41
+
+Epoch: 2/30,            
+train_loss = 0.5250,  train_acc = 0.7527,  train_prec = 0.5436,  train_recall = 0.6939,  train_f1 = 0.6096,  train_aucroc = 0.7833,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.7464,  eval_acc = 0.5840,  eval_prec = 0.2551,  eval_recall = 0.7241,  eval_f1 = 0.3772,  eval_aucroc = 0.6716,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00003000
+Elapsed Time:  00:05:03.09
+
+Epoch: 3/30,            
+train_loss = 0.4369,  train_acc = 0.8013,  train_prec = 0.6542,  train_recall = 0.7538,  train_f1 = 0.7005,  train_aucroc = 0.8620,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9292,  eval_acc = 0.5680,  eval_prec = 0.1660,  eval_recall = 0.8039,  eval_f1 = 0.2752,  eval_aucroc = 0.6701,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002997
+Elapsed Time:  00:07:35.68
+
+Epoch: 4/30,            
+train_loss = 0.3363,  train_acc = 0.8549,  train_prec = 0.7575,  train_recall = 0.8203,  train_f1 = 0.7877,  train_aucroc = 0.9221,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9409,  eval_acc = 0.6280,  eval_prec = 0.4494,  eval_recall = 0.6894,  eval_f1 = 0.5441,  eval_aucroc = 0.6956,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002990
+Elapsed Time:  00:10:07.02
+
+Epoch: 5/30,            
+train_loss = 0.2571,  train_acc = 0.8898,  train_prec = 0.8387,  train_recall = 0.8491,  train_f1 = 0.8439,  train_aucroc = 0.9559,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.7897,  eval_acc = 0.6080,  eval_prec = 0.4130,  eval_recall = 0.6667,  eval_f1 = 0.5100,  eval_aucroc = 0.6953,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002979
+Elapsed Time:  00:12:39.88
+
+Epoch: 6/30,            
+train_loss = 0.1946,  train_acc = 0.9255,  train_prec = 0.8904,  train_recall = 0.8990,  train_f1 = 0.8947,  train_aucroc = 0.9743,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.8985,  eval_acc = 0.6480,  eval_prec = 0.4899,  eval_recall = 0.7076,  eval_f1 = 0.5789,  eval_aucroc = 0.7174,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002963
+Elapsed Time:  00:15:11.67
+
+Epoch: 7/30,            
+train_loss = 0.1492,  train_acc = 0.9404,  train_prec = 0.9082,  train_recall = 0.9226,  train_f1 = 0.9154,  train_aucroc = 0.9851,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.3049,  eval_acc = 0.5980,  eval_prec = 0.2955,  eval_recall = 0.7300,  eval_f1 = 0.4207,  eval_aucroc = 0.6889,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002943
+Elapsed Time:  00:17:44.34
+
+Epoch: 8/30,            
+train_loss = 0.1198,  train_acc = 0.9544,  train_prec = 0.9314,  train_recall = 0.9395,  train_f1 = 0.9355,  train_aucroc = 0.9903,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.4765,  eval_acc = 0.6620,  eval_prec = 0.4534,  eval_recall = 0.7671,  eval_f1 = 0.5700,  eval_aucroc = 0.7130,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002919
+Elapsed Time:  00:20:15.63
+
+Epoch: 9/30,            
+train_loss = 0.0946,  train_acc = 0.9641,  train_prec = 0.9533,  train_recall = 0.9461,  train_f1 = 0.9497,  train_aucroc = 0.9937,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.6531,  eval_acc = 0.6500,  eval_prec = 0.4130,  eval_recall = 0.7727,  eval_f1 = 0.5383,  eval_aucroc = 0.7069,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002890
+Elapsed Time:  00:22:46.77
+
+Epoch: 10/30,            
+train_loss = 0.0836,  train_acc = 0.9702,  train_prec = 0.9599,  train_recall = 0.9564,  train_f1 = 0.9582,  train_aucroc = 0.9949,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.7586,  eval_acc = 0.6580,  eval_prec = 0.4494,  eval_recall = 0.7603,  eval_f1 = 0.5649,  eval_aucroc = 0.7003,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002858
+Elapsed Time:  00:25:17.99
+
+Epoch: 11/30,            
+train_loss = 0.0621,  train_acc = 0.9788,  train_prec = 0.9689,  train_recall = 0.9714,  train_f1 = 0.9701,  train_aucroc = 0.9966,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.9717,  eval_acc = 0.6460,  eval_prec = 0.4494,  eval_recall = 0.7303,  eval_f1 = 0.5564,  eval_aucroc = 0.6910,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002821
+Elapsed Time:  00:27:49.02
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 64.800
+Val AUC-ROC of best model = 71.740
+Val precision of best model = 48.988
+Val recall of best model = 70.760
+Val f1 of best model = 57.895
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 2.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.5
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 07:15:39.322812 
+
+
+Epoch: 1/30,            
+train_loss = 0.9101,  train_acc = 0.5686,  train_prec = 0.5982,  train_recall = 0.4239,  train_f1 = 0.4962,  train_aucroc = 0.6103,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1119,  eval_acc = 0.5600,  eval_prec = 0.2024,  eval_recall = 0.6849,  eval_f1 = 0.3125,  eval_aucroc = 0.6086,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001596
+Elapsed Time:  00:02:30.59
+
+Epoch: 2/30,            
+train_loss = 0.7729,  train_acc = 0.7142,  train_prec = 0.6959,  train_recall = 0.5817,  train_f1 = 0.6337,  train_aucroc = 0.7732,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1706,  eval_acc = 0.5960,  eval_prec = 0.3725,  eval_recall = 0.6619,  eval_f1 = 0.4767,  eval_aucroc = 0.6398,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00003000
+Elapsed Time:  00:05:03.53
+
+Epoch: 3/30,            
+train_loss = 0.6557,  train_acc = 0.7747,  train_prec = 0.7817,  train_recall = 0.6527,  train_f1 = 0.7114,  train_aucroc = 0.8484,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.2992,  eval_acc = 0.6280,  eval_prec = 0.4089,  eval_recall = 0.7163,  eval_f1 = 0.5206,  eval_aucroc = 0.6763,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002997
+Elapsed Time:  00:07:36.44
+
+Epoch: 4/30,            
+train_loss = 0.5249,  train_acc = 0.8306,  train_prec = 0.8400,  train_recall = 0.7260,  train_f1 = 0.7789,  train_aucroc = 0.9071,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1772,  eval_acc = 0.6280,  eval_prec = 0.5709,  eval_recall = 0.6380,  eval_f1 = 0.6026,  eval_aucroc = 0.6949,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002990
+Elapsed Time:  00:10:09.37
+
+Epoch: 5/30,            
+train_loss = 0.4102,  train_acc = 0.8733,  train_prec = 0.8851,  train_recall = 0.7854,  train_f1 = 0.8323,  train_aucroc = 0.9439,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1992,  eval_acc = 0.6180,  eval_prec = 0.4858,  eval_recall = 0.6522,  eval_f1 = 0.5568,  eval_aucroc = 0.6916,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002979
+Elapsed Time:  00:12:42.07
+
+Epoch: 6/30,            
+train_loss = 0.3304,  train_acc = 0.9009,  train_prec = 0.9112,  train_recall = 0.8274,  train_f1 = 0.8673,  train_aucroc = 0.9631,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.3828,  eval_acc = 0.6340,  eval_prec = 0.5263,  eval_recall = 0.6633,  eval_f1 = 0.5869,  eval_aucroc = 0.7051,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002963
+Elapsed Time:  00:15:14.04
+
+Epoch: 7/30,            
+train_loss = 0.2637,  train_acc = 0.9239,  train_prec = 0.9324,  train_recall = 0.8640,  train_f1 = 0.8969,  train_aucroc = 0.9765,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.2009,  eval_acc = 0.6240,  eval_prec = 0.3968,  eval_recall = 0.7153,  eval_f1 = 0.5104,  eval_aucroc = 0.6916,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002943
+Elapsed Time:  00:17:47.31
+
+Epoch: 8/30,            
+train_loss = 0.2081,  train_acc = 0.9393,  train_prec = 0.9480,  train_recall = 0.8885,  train_f1 = 0.9173,  train_aucroc = 0.9853,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.4111,  eval_acc = 0.6140,  eval_prec = 0.3279,  eval_recall = 0.7500,  eval_f1 = 0.4563,  eval_aucroc = 0.7211,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002919
+Elapsed Time:  00:20:18.91
+
+Epoch: 9/30,            
+train_loss = 0.1743,  train_acc = 0.9545,  train_prec = 0.9540,  train_recall = 0.9207,  train_f1 = 0.9370,  train_aucroc = 0.9896,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.4286,  eval_acc = 0.6560,  eval_prec = 0.4737,  eval_recall = 0.7358,  eval_f1 = 0.5764,  eval_aucroc = 0.7161,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002890
+Elapsed Time:  00:22:51.40
+
+Epoch: 10/30,            
+train_loss = 0.1548,  train_acc = 0.9604,  train_prec = 0.9606,  train_recall = 0.9301,  train_f1 = 0.9451,  train_aucroc = 0.9914,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.9053,  eval_acc = 0.6360,  eval_prec = 0.4291,  eval_recall = 0.7211,  eval_f1 = 0.5381,  eval_aucroc = 0.6991,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002858
+Elapsed Time:  00:25:23.01
+
+Epoch: 11/30,            
+train_loss = 0.1264,  train_acc = 0.9681,  train_prec = 0.9682,  train_recall = 0.9435,  train_f1 = 0.9557,  train_aucroc = 0.9943,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.2635,  eval_acc = 0.6620,  eval_prec = 0.5709,  eval_recall = 0.6912,  eval_f1 = 0.6253,  eval_aucroc = 0.7179,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002821
+Elapsed Time:  00:27:54.06
+
+Epoch: 12/30,            
+train_loss = 0.1385,  train_acc = 0.9609,  train_prec = 0.9629,  train_recall = 0.9296,  train_f1 = 0.9460,  train_aucroc = 0.9938,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.0709,  eval_acc = 0.6720,  eval_prec = 0.5992,  eval_recall = 0.6948,  eval_f1 = 0.6435,  eval_aucroc = 0.7194,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002781
+Elapsed Time:  00:30:25.40
+
+Epoch: 13/30,            
+train_loss = 0.1028,  train_acc = 0.9767,  train_prec = 0.9695,  train_recall = 0.9651,  train_f1 = 0.9673,  train_aucroc = 0.9961,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.5032,  eval_acc = 0.6260,  eval_prec = 0.4049,  eval_recall = 0.7143,  eval_f1 = 0.5168,  eval_aucroc = 0.6998,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002737
+Elapsed Time:  00:32:56.26
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 61.400
+Val AUC-ROC of best model = 72.111
+Val precision of best model = 32.794
+Val recall of best model = 75.000
+Val f1 of best model = 45.634
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 5.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.5
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 07:49:07.013905 
+
+
+Epoch: 1/30,            
+train_loss = 1.4265,  train_acc = 0.3845,  train_prec = 0.9122,  train_recall = 0.3567,  train_f1 = 0.5128,  train_aucroc = 0.5724,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.4510,  eval_acc = 0.5000,  eval_prec = 1.0000,  eval_recall = 0.4970,  eval_f1 = 0.6640,  eval_aucroc = 0.5903,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001596
+Elapsed Time:  00:02:30.62
+
+Epoch: 2/30,            
+train_loss = 1.1792,  train_acc = 0.5804,  train_prec = 0.8884,  train_recall = 0.4537,  train_f1 = 0.6006,  train_aucroc = 0.7689,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.7088,  eval_acc = 0.5960,  eval_prec = 0.6478,  eval_recall = 0.5818,  eval_f1 = 0.6130,  eval_aucroc = 0.6496,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00003000
+Elapsed Time:  00:05:03.88
+
+Epoch: 3/30,            
+train_loss = 0.9769,  train_acc = 0.7194,  train_prec = 0.8937,  train_recall = 0.5666,  train_f1 = 0.6935,  train_aucroc = 0.8554,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.9913,  eval_acc = 0.6160,  eval_prec = 0.6032,  eval_recall = 0.6132,  eval_f1 = 0.6082,  eval_aucroc = 0.6667,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002997
+Elapsed Time:  00:07:37.06
+
+Epoch: 4/30,            
+train_loss = 0.7781,  train_acc = 0.7955,  train_prec = 0.9192,  train_recall = 0.6500,  train_f1 = 0.7615,  train_aucroc = 0.9099,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.8353,  eval_acc = 0.6360,  eval_prec = 0.7166,  eval_recall = 0.6125,  eval_f1 = 0.6604,  eval_aucroc = 0.7018,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002990
+Elapsed Time:  00:10:10.07
+
+Epoch: 5/30,            
+train_loss = 0.6226,  train_acc = 0.8471,  train_prec = 0.9424,  train_recall = 0.7164,  train_f1 = 0.8140,  train_aucroc = 0.9402,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.5278,  eval_acc = 0.6320,  eval_prec = 0.6356,  eval_recall = 0.6255,  eval_f1 = 0.6305,  eval_aucroc = 0.6866,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002979
+Elapsed Time:  00:12:42.91
+
+Epoch: 6/30,            
+train_loss = 0.5061,  train_acc = 0.8825,  train_prec = 0.9546,  train_recall = 0.7698,  train_f1 = 0.8523,  train_aucroc = 0.9609,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.9208,  eval_acc = 0.6300,  eval_prec = 0.6032,  eval_recall = 0.6314,  eval_f1 = 0.6170,  eval_aucroc = 0.6898,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002963
+Elapsed Time:  00:15:14.80
+
+Epoch: 7/30,            
+train_loss = 0.4524,  train_acc = 0.9021,  train_prec = 0.9543,  train_recall = 0.8059,  train_f1 = 0.8738,  train_aucroc = 0.9696,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 3.9961,  eval_acc = 0.6480,  eval_prec = 0.5547,  eval_recall = 0.6749,  eval_f1 = 0.6089,  eval_aucroc = 0.6892,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002943
+Elapsed Time:  00:17:47.16
+
+Epoch: 8/30,            
+train_loss = 0.3545,  train_acc = 0.9307,  train_prec = 0.9636,  train_recall = 0.8586,  train_f1 = 0.9081,  train_aucroc = 0.9809,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 4.5625,  eval_acc = 0.6460,  eval_prec = 0.4939,  eval_recall = 0.7011,  eval_f1 = 0.5796,  eval_aucroc = 0.7042,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002919
+Elapsed Time:  00:20:18.52
+
+Epoch: 9/30,            
+train_loss = 0.3435,  train_acc = 0.9353,  train_prec = 0.9629,  train_recall = 0.8691,  train_f1 = 0.9136,  train_aucroc = 0.9835,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.1257,  eval_acc = 0.6360,  eval_prec = 0.4777,  eval_recall = 0.6901,  eval_f1 = 0.5646,  eval_aucroc = 0.6981,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002890
+Elapsed Time:  00:22:51.22
+
+Epoch: 10/30,            
+train_loss = 0.2907,  train_acc = 0.9474,  train_prec = 0.9652,  train_recall = 0.8950,  train_f1 = 0.9288,  train_aucroc = 0.9886,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.3523,  eval_acc = 0.6500,  eval_prec = 0.5304,  eval_recall = 0.6895,  eval_f1 = 0.5995,  eval_aucroc = 0.7002,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002858
+Elapsed Time:  00:25:22.60
+
+Epoch: 11/30,            
+train_loss = 0.2346,  train_acc = 0.9559,  train_prec = 0.9709,  train_recall = 0.9108,  train_f1 = 0.9399,  train_aucroc = 0.9927,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.2594,  eval_acc = 0.6480,  eval_prec = 0.5020,  eval_recall = 0.7006,  eval_f1 = 0.5849,  eval_aucroc = 0.7059,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002821
+Elapsed Time:  00:27:53.82
+
+Epoch: 12/30,            
+train_loss = 0.2257,  train_acc = 0.9626,  train_prec = 0.9742,  train_recall = 0.9246,  train_f1 = 0.9487,  train_aucroc = 0.9928,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 5.9941,  eval_acc = 0.6600,  eval_prec = 0.5101,  eval_recall = 0.7200,  eval_f1 = 0.5972,  eval_aucroc = 0.6936,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002781
+Elapsed Time:  00:30:26.13
+
+Epoch: 13/30,            
+train_loss = 0.2002,  train_acc = 0.9681,  train_prec = 0.9755,  train_recall = 0.9373,  train_f1 = 0.9560,  train_aucroc = 0.9943,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 4.1317,  eval_acc = 0.6540,  eval_prec = 0.6518,  eval_recall = 0.6492,  eval_f1 = 0.6505,  eval_aucroc = 0.7029,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002737
+Elapsed Time:  00:32:57.02
+
+Epoch: 14/30,            
+train_loss = 0.1973,  train_acc = 0.9669,  train_prec = 0.9742,  train_recall = 0.9354,  train_f1 = 0.9544,  train_aucroc = 0.9955,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 6.3969,  eval_acc = 0.6540,  eval_prec = 0.5587,  eval_recall = 0.6832,  eval_f1 = 0.6147,  eval_aucroc = 0.6896,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002689
+Elapsed Time:  00:35:28.06
+
+Epoch: 15/30,            
+train_loss = 0.1913,  train_acc = 0.9711,  train_prec = 0.9755,  train_recall = 0.9448,  train_f1 = 0.9599,  train_aucroc = 0.9949,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 8.2531,  eval_acc = 0.6320,  eval_prec = 0.3887,  eval_recall = 0.7442,  eval_f1 = 0.5106,  eval_aucroc = 0.7027,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002638
+Elapsed Time:  00:37:59.23
+
+Epoch: 16/30,            
+train_loss = 0.1785,  train_acc = 0.9718,  train_prec = 0.9755,  train_recall = 0.9466,  train_f1 = 0.9608,  train_aucroc = 0.9962,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 10.0326,  eval_acc = 0.6100,  eval_prec = 0.3198,  eval_recall = 0.7453,  eval_f1 = 0.4476,  eval_aucroc = 0.6935,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002584
+Elapsed Time:  00:40:30.99
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 64.800
+Val AUC-ROC of best model = 70.586
+Val precision of best model = 50.202
+Val recall of best model = 70.056
+Val f1 of best model = 58.491
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 1.0
+lr : 1e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.2
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 08:30:09.156859 
+
+
+Epoch: 1/30,            
+train_loss = 0.6385,  train_acc = 0.6486,  train_prec = 0.0672,  train_recall = 0.5428,  train_f1 = 0.1197,  train_aucroc = 0.5902,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.7141,  eval_acc = 0.5540,  eval_prec = 0.3077,  eval_recall = 0.5938,  eval_f1 = 0.4053,  eval_aucroc = 0.5649,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000532
+Elapsed Time:  00:02:30.09
+
+Epoch: 2/30,            
+train_loss = 0.5697,  train_acc = 0.7134,  train_prec = 0.4313,  train_recall = 0.6442,  train_f1 = 0.5167,  train_aucroc = 0.7297,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.8408,  eval_acc = 0.5640,  eval_prec = 0.2105,  eval_recall = 0.6933,  eval_f1 = 0.3230,  eval_aucroc = 0.6125,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001000
+Elapsed Time:  00:05:02.93
+
+Epoch: 3/30,            
+train_loss = 0.5072,  train_acc = 0.7675,  train_prec = 0.5757,  train_recall = 0.7143,  train_f1 = 0.6376,  train_aucroc = 0.8013,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9267,  eval_acc = 0.5720,  eval_prec = 0.1862,  eval_recall = 0.7797,  eval_f1 = 0.3007,  eval_aucroc = 0.6427,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000999
+Elapsed Time:  00:07:35.59
+
+Epoch: 4/30,            
+train_loss = 0.4480,  train_acc = 0.8025,  train_prec = 0.6486,  train_recall = 0.7601,  train_f1 = 0.6999,  train_aucroc = 0.8508,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.7119,  eval_acc = 0.6240,  eval_prec = 0.6194,  eval_recall = 0.6194,  eval_f1 = 0.6194,  eval_aucroc = 0.6725,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000997
+Elapsed Time:  00:10:08.62
+
+Epoch: 5/30,            
+train_loss = 0.3905,  train_acc = 0.8355,  train_prec = 0.7290,  train_recall = 0.7914,  train_f1 = 0.7590,  train_aucroc = 0.8921,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.6827,  eval_acc = 0.6360,  eval_prec = 0.5061,  eval_recall = 0.6757,  eval_f1 = 0.5787,  eval_aucroc = 0.6984,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000993
+Elapsed Time:  00:12:41.18
+
+Epoch: 6/30,            
+train_loss = 0.3322,  train_acc = 0.8652,  train_prec = 0.7817,  train_recall = 0.8289,  train_f1 = 0.8046,  train_aucroc = 0.9228,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.8770,  eval_acc = 0.6080,  eval_prec = 0.3239,  eval_recall = 0.7339,  eval_f1 = 0.4494,  eval_aucroc = 0.6783,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000988
+Elapsed Time:  00:15:14.52
+
+Epoch: 7/30,            
+train_loss = 0.2798,  train_acc = 0.8880,  train_prec = 0.8251,  train_recall = 0.8545,  train_f1 = 0.8396,  train_aucroc = 0.9464,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9072,  eval_acc = 0.6360,  eval_prec = 0.4372,  eval_recall = 0.7152,  eval_f1 = 0.5427,  eval_aucroc = 0.6863,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000981
+Elapsed Time:  00:17:46.40
+
+Epoch: 8/30,            
+train_loss = 0.2399,  train_acc = 0.9067,  train_prec = 0.8579,  train_recall = 0.8768,  train_f1 = 0.8672,  train_aucroc = 0.9607,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9445,  eval_acc = 0.6100,  eval_prec = 0.3765,  eval_recall = 0.6940,  eval_f1 = 0.4882,  eval_aucroc = 0.7015,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000973
+Elapsed Time:  00:20:31.29
+
+Epoch: 9/30,            
+train_loss = 0.1982,  train_acc = 0.9233,  train_prec = 0.8841,  train_recall = 0.8984,  train_f1 = 0.8912,  train_aucroc = 0.9725,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.0429,  eval_acc = 0.6380,  eval_prec = 0.4858,  eval_recall = 0.6897,  eval_f1 = 0.5701,  eval_aucroc = 0.7007,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000963
+Elapsed Time:  00:23:11.63
+
+Epoch: 10/30,            
+train_loss = 0.1569,  train_acc = 0.9438,  train_prec = 0.9159,  train_recall = 0.9251,  train_f1 = 0.9204,  train_aucroc = 0.9818,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1081,  eval_acc = 0.6280,  eval_prec = 0.4656,  eval_recall = 0.6805,  eval_f1 = 0.5529,  eval_aucroc = 0.6987,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000953
+Elapsed Time:  00:25:44.48
+
+Epoch: 11/30,            
+train_loss = 0.1331,  train_acc = 0.9513,  train_prec = 0.9275,  train_recall = 0.9349,  train_f1 = 0.9312,  train_aucroc = 0.9873,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1891,  eval_acc = 0.6140,  eval_prec = 0.4008,  eval_recall = 0.6875,  eval_f1 = 0.5064,  eval_aucroc = 0.6898,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000940
+Elapsed Time:  00:28:16.27
+
+Epoch: 12/30,            
+train_loss = 0.1080,  train_acc = 0.9642,  train_prec = 0.9487,  train_recall = 0.9505,  train_f1 = 0.9496,  train_aucroc = 0.9907,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.2732,  eval_acc = 0.6560,  eval_prec = 0.6073,  eval_recall = 0.6667,  eval_f1 = 0.6356,  eval_aucroc = 0.6930,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000927
+Elapsed Time:  00:30:48.01
+
+Epoch: 13/30,            
+train_loss = 0.0954,  train_acc = 0.9662,  train_prec = 0.9497,  train_recall = 0.9550,  train_f1 = 0.9523,  train_aucroc = 0.9932,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.6005,  eval_acc = 0.6240,  eval_prec = 0.4008,  eval_recall = 0.7122,  eval_f1 = 0.5130,  eval_aucroc = 0.6925,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000912
+Elapsed Time:  00:33:19.34
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 61.000
+Val AUC-ROC of best model = 70.153
+Val precision of best model = 37.652
+Val recall of best model = 69.403
+Val f1 of best model = 48.819
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 2.0
+lr : 1e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.2
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 09:04:00.346296 
+
+
+Epoch: 1/30,            
+train_loss = 0.9182,  train_acc = 0.5748,  train_prec = 0.5684,  train_recall = 0.4261,  train_f1 = 0.4871,  train_aucroc = 0.5971,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9755,  eval_acc = 0.5280,  eval_prec = 0.7935,  eval_recall = 0.5144,  eval_f1 = 0.6242,  eval_aucroc = 0.5614,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000532
+Elapsed Time:  00:02:34.83
+
+Epoch: 2/30,            
+train_loss = 0.8455,  train_acc = 0.6604,  train_prec = 0.6492,  train_recall = 0.5174,  train_f1 = 0.5759,  train_aucroc = 0.7086,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.1105,  eval_acc = 0.5800,  eval_prec = 0.4332,  eval_recall = 0.6045,  eval_f1 = 0.5047,  eval_aucroc = 0.6051,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001000
+Elapsed Time:  00:05:15.58
+
+Epoch: 3/30,            
+train_loss = 0.7446,  train_acc = 0.7400,  train_prec = 0.7155,  train_recall = 0.6152,  train_f1 = 0.6616,  train_aucroc = 0.7940,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.3421,  eval_acc = 0.5640,  eval_prec = 0.2227,  eval_recall = 0.6790,  eval_f1 = 0.3354,  eval_aucroc = 0.6126,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000999
+Elapsed Time:  00:07:54.57
+
+Epoch: 4/30,            
+train_loss = 0.6725,  train_acc = 0.7694,  train_prec = 0.7579,  train_recall = 0.6506,  train_f1 = 0.7001,  train_aucroc = 0.8398,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.0880,  eval_acc = 0.6040,  eval_prec = 0.5547,  eval_recall = 0.6089,  eval_f1 = 0.5805,  eval_aucroc = 0.6580,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000997
+Elapsed Time:  00:10:39.64
+
+Epoch: 5/30,            
+train_loss = 0.5732,  train_acc = 0.8089,  train_prec = 0.8254,  train_recall = 0.6943,  train_f1 = 0.7542,  train_aucroc = 0.8880,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.9981,  eval_acc = 0.6400,  eval_prec = 0.7085,  eval_recall = 0.6184,  eval_f1 = 0.6604,  eval_aucroc = 0.6889,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000993
+Elapsed Time:  00:13:32.11
+
+Epoch: 6/30,            
+train_loss = 0.4908,  train_acc = 0.8455,  train_prec = 0.8592,  train_recall = 0.7450,  train_f1 = 0.7980,  train_aucroc = 0.9190,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.3659,  eval_acc = 0.6060,  eval_prec = 0.4291,  eval_recall = 0.6543,  eval_f1 = 0.5183,  eval_aucroc = 0.6800,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000988
+Elapsed Time:  00:16:16.25
+
+Epoch: 7/30,            
+train_loss = 0.4203,  train_acc = 0.8747,  train_prec = 0.8841,  train_recall = 0.7887,  train_f1 = 0.8337,  train_aucroc = 0.9403,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.5428,  eval_acc = 0.6200,  eval_prec = 0.4818,  eval_recall = 0.6575,  eval_f1 = 0.5561,  eval_aucroc = 0.6813,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000981
+Elapsed Time:  00:19:03.66
+
+Epoch: 8/30,            
+train_loss = 0.3695,  train_acc = 0.8912,  train_prec = 0.8910,  train_recall = 0.8186,  train_f1 = 0.8533,  train_aucroc = 0.9544,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.6540,  eval_acc = 0.6140,  eval_prec = 0.3927,  eval_recall = 0.6929,  eval_f1 = 0.5013,  eval_aucroc = 0.6807,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000973
+Elapsed Time:  00:21:56.80
+
+Epoch: 9/30,            
+train_loss = 0.2998,  train_acc = 0.9186,  train_prec = 0.9188,  train_recall = 0.8612,  train_f1 = 0.8891,  train_aucroc = 0.9690,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.5817,  eval_acc = 0.6320,  eval_prec = 0.5506,  eval_recall = 0.6507,  eval_f1 = 0.5965,  eval_aucroc = 0.6964,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000963
+Elapsed Time:  00:24:46.07
+
+Epoch: 10/30,            
+train_loss = 0.2616,  train_acc = 0.9293,  train_prec = 0.9328,  train_recall = 0.8762,  train_f1 = 0.9036,  train_aucroc = 0.9765,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.5130,  eval_acc = 0.6420,  eval_prec = 0.6113,  eval_recall = 0.6453,  eval_f1 = 0.6279,  eval_aucroc = 0.6990,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000953
+Elapsed Time:  00:27:34.36
+
+Epoch: 11/30,            
+train_loss = 0.2022,  train_acc = 0.9473,  train_prec = 0.9457,  train_recall = 0.9095,  train_f1 = 0.9272,  train_aucroc = 0.9859,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.7367,  eval_acc = 0.6380,  eval_prec = 0.5101,  eval_recall = 0.6774,  eval_f1 = 0.5820,  eval_aucroc = 0.6972,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000940
+Elapsed Time:  00:30:12.73
+
+Epoch: 12/30,            
+train_loss = 0.1939,  train_acc = 0.9498,  train_prec = 0.9437,  train_recall = 0.9173,  train_f1 = 0.9303,  train_aucroc = 0.9876,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.2888,  eval_acc = 0.6240,  eval_prec = 0.4494,  eval_recall = 0.6810,  eval_f1 = 0.5415,  eval_aucroc = 0.6833,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000927
+Elapsed Time:  00:32:50.75
+
+Epoch: 13/30,            
+train_loss = 0.1467,  train_acc = 0.9647,  train_prec = 0.9583,  train_recall = 0.9433,  train_f1 = 0.9507,  train_aucroc = 0.9917,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.4717,  eval_acc = 0.6300,  eval_prec = 0.4494,  eval_recall = 0.6938,  eval_f1 = 0.5455,  eval_aucroc = 0.6973,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000912
+Elapsed Time:  00:35:28.88
+
+Epoch: 14/30,            
+train_loss = 0.1562,  train_acc = 0.9618,  train_prec = 0.9546,  train_recall = 0.9388,  train_f1 = 0.9466,  train_aucroc = 0.9917,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.4800,  eval_acc = 0.6220,  eval_prec = 0.4332,  eval_recall = 0.6859,  eval_f1 = 0.5310,  eval_aucroc = 0.6759,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000896
+Elapsed Time:  00:38:09.60
+
+Epoch: 15/30,            
+train_loss = 0.1106,  train_acc = 0.9746,  train_prec = 0.9699,  train_recall = 0.9591,  train_f1 = 0.9644,  train_aucroc = 0.9957,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.7376,  eval_acc = 0.6300,  eval_prec = 0.4818,  eval_recall = 0.6761,  eval_f1 = 0.5626,  eval_aucroc = 0.6763,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000879
+Elapsed Time:  00:40:48.83
+
+----------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 64.200
+Val AUC-ROC of best model = 69.898
+Val precision of best model = 61.134
+Val recall of best model = 64.530
+Val f1 of best model = 62.786
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 5.0
+lr : 1e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.2
+filter_text : False
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+filter text False
+filter text False
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-20 09:45:21.761094 
+
+
+Epoch: 1/30,            
+train_loss = 1.4660,  train_acc = 0.3994,  train_prec = 0.8632,  train_recall = 0.3571,  train_f1 = 0.5052,  train_aucroc = 0.5469,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.3903,  eval_acc = 0.4940,  eval_prec = 1.0000,  eval_recall = 0.4940,  eval_f1 = 0.6613,  eval_aucroc = 0.5121,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000532
+Elapsed Time:  00:02:45.33
+
+Epoch: 2/30,            
+train_loss = 1.2815,  train_acc = 0.4381,  train_prec = 0.9543,  train_recall = 0.3832,  train_f1 = 0.5468,  train_aucroc = 0.7028,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.6381,  eval_acc = 0.5500,  eval_prec = 0.7206,  eval_recall = 0.5329,  eval_f1 = 0.6127,  eval_aucroc = 0.6024,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001000
+Elapsed Time:  00:05:23.85
+
+Epoch: 3/30,            
+train_loss = 1.0984,  train_acc = 0.6413,  train_prec = 0.8963,  train_recall = 0.4972,  train_f1 = 0.6396,  train_aucroc = 0.8108,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.4038,  eval_acc = 0.5660,  eval_prec = 0.2996,  eval_recall = 0.6271,  eval_f1 = 0.4055,  eval_aucroc = 0.6328,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000999
+Elapsed Time:  00:08:03.05
+
+Epoch: 4/30,            
+train_loss = 0.9630,  train_acc = 0.7199,  train_prec = 0.8880,  train_recall = 0.5675,  train_f1 = 0.6925,  train_aucroc = 0.8623,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.9068,  eval_acc = 0.6080,  eval_prec = 0.6032,  eval_recall = 0.6032,  eval_f1 = 0.6032,  eval_aucroc = 0.6660,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000997
+Elapsed Time:  00:10:45.03
+
+Epoch: 5/30,            
+train_loss = 0.8087,  train_acc = 0.7911,  train_prec = 0.9106,  train_recall = 0.6461,  train_f1 = 0.7558,  train_aucroc = 0.9047,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.6990,  eval_acc = 0.6140,  eval_prec = 0.7247,  eval_recall = 0.5888,  eval_f1 = 0.6497,  eval_aucroc = 0.6738,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000993
+Elapsed Time:  00:13:22.64
+
+Epoch: 6/30,            
+train_loss = 0.6760,  train_acc = 0.8331,  train_prec = 0.9334,  train_recall = 0.6982,  train_f1 = 0.7989,  train_aucroc = 0.9314,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.3727,  eval_acc = 0.6120,  eval_prec = 0.5992,  eval_recall = 0.6091,  eval_f1 = 0.6041,  eval_aucroc = 0.6790,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000988
+Elapsed Time:  00:15:59.52
+
+Epoch: 7/30,            
+train_loss = 0.5749,  train_acc = 0.8645,  train_prec = 0.9391,  train_recall = 0.7455,  train_f1 = 0.8311,  train_aucroc = 0.9500,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.9870,  eval_acc = 0.6340,  eval_prec = 0.5263,  eval_recall = 0.6633,  eval_f1 = 0.5869,  eval_aucroc = 0.6900,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00000981
+Elapsed Time:  00:18:36.99
