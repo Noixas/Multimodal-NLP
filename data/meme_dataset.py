@@ -127,7 +127,7 @@ class MemeDataset(data.Dataset):
         
         
         #################################
-        #Upsample both hateful and not hateful confounders - option 3
+        #Upsample both hateful and not hateful duplicated text memes - option 3
         #################################
         # len_rows_confounders = len(duplicated_text)        
         # # Create an upsample of data by sampling with replacement and reseting index
@@ -135,7 +135,7 @@ class MemeDataset(data.Dataset):
         #     n=len_rows_confounders*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
         # print("Confounders upsampled by", str(multiplier), "times. \n From", str(
         #     len_rows_confounders), " samples to", str(len(rows_confounders_upsampled)))
-        # print("Upsample both hateful and not hateful confounders - option 3")
+        # print("Upsample both hateful and not hateful duplicated text memes - option 3")
 
 
 
