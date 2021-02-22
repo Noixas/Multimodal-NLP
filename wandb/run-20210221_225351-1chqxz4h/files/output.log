@@ -1,0 +1,442 @@
+21/02/2021 10:53:52 PM : INFO - Data path checked..
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.99921/02/2021 10:53:52 PM : INFO - Model save path checked..
+21/02/2021 10:53:52 PM : INFO - config JSON path checked..
+21/02/2021 10:53:52 PM : INFO - Tensorboard Visualization path checked..
+21/02/2021 10:53:52 PM : INFO - Cleaning Visualization path of older tensorboard files...
+
+
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 3.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.2
+filter_text : True
+no_normalize_img : True
+train_filename : upsampled_augmented_and_confounders_by_2x_train.jsonl
+upsample_multiplier : 0
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text True
+Loaded dataset contains  16788 samples
+filter text True
+Loaded dataset contains  500 samples
+filter text True
+Loaded dataset contains  1000 samples
+21/02/2021 10:54:05 PM : INFO - Using pretrained UNITER base model ./model_checkpoints/uniter-base.pt
+21/02/2021 10:54:05 PM : INFO - Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 28996
+}
+
+MemeUniter
+MemeUniter(
+  (uniter_model): UniterModel(
+    (embeddings): UniterTextEmbeddings(
+      (word_embeddings): Embedding(28996, 768, padding_idx=0)
+      (position_embeddings): Embedding(512, 768)
+      (token_type_embeddings): Embedding(2, 768)
+      (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+    (img_embeddings): UniterImageEmbeddings(
+      (img_linear): Linear(in_features=2048, out_features=768, bias=True)
+      (img_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+      (pos_layer_norm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+      (pos_linear): Linear(in_features=7, out_features=768, bias=True)
+      (mask_embedding): Embedding(2, 2048, padding_idx=0)
+      (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+    (encoder): UniterEncoder(
+      (layer): ModuleList(
+        (0): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (1): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (2): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (3): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (4): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (5): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (6): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (7): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (8): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (9): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (10): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (11): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([768]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (pooler): BertPooler(
+      (dense): Linear(in_features=768, out_features=768, bias=True)
+      (activation): Tanh()
+    )
+  )
+  (linear_1): Linear(in_features=768, out_features=384, bias=True)
+  (activation): ReLU()
+  (linear_2): Linear(in_features=384, out_features=1, bias=True)
+)
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-21 22:54:08.541826 
+
+
+Epoch: 1/30,            
+train_loss = 0.9078,  train_acc = 0.7530,  train_prec = 0.1520,  train_recall = 0.2244,  train_f1 = 0.1813,  train_aucroc = 0.5590,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.6176,  eval_acc = 0.5480,  eval_prec = 0.2915,  eval_recall = 0.5854,  eval_f1 = 0.3892,  eval_aucroc = 0.5887,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00003000
+Elapsed Time:  00:05:05.52
+21/02/2021 10:59:14 PM : INFO - New High Score! Saving model...
+21/02/2021 10:59:15 PM : INFO - current patience: 0
+
+Epoch: 2/30,            
+train_loss = 0.7782,  train_acc = 0.7855,  train_prec = 0.5303,  train_recall = 0.4231,  train_f1 = 0.4707,  train_aucroc = 0.7484,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 1.6890,  eval_acc = 0.5820,  eval_prec = 0.3036,  eval_recall = 0.6696,  eval_f1 = 0.4178,  eval_aucroc = 0.6497,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002998
+Elapsed Time:  00:10:12.64
+21/02/2021 11:04:21 PM : INFO - New High Score! Saving model...
+21/02/2021 11:04:22 PM : INFO - current patience: 0
+21/02/2021 11:09:28 PM : INFO - New High Score! Saving model...
+
+Epoch: 3/30,            
+train_loss = 0.6296,  train_acc = 0.8307,  train_prec = 0.6770,  train_recall = 0.5225,  train_f1 = 0.5898,  train_aucroc = 0.8519,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 2.0745,  eval_acc = 0.6060,  eval_prec = 0.3441,  eval_recall = 0.7083,  eval_f1 = 0.4632,  eval_aucroc = 0.6624,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002991
+Elapsed Time:  00:15:19.53
+21/02/2021 11:09:29 PM : INFO - current patience: 0
+
+Epoch: 4/30,            
+train_loss = 0.4719,  train_acc = 0.8799,  train_prec = 0.7691,  train_recall = 0.6376,  train_f1 = 0.6972,  train_aucroc = 0.9218,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 3.2030,  eval_acc = 0.6120,  eval_prec = 0.3320,  eval_recall = 0.7387,  eval_f1 = 0.4581,  eval_aucroc = 0.6754,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002980
+Elapsed Time:  00:20:27.7821/02/2021 11:14:36 PM : INFO - New High Score! Saving model...
+
+21/02/2021 11:14:37 PM : INFO - current patience: 0
+
+Epoch: 5/30,            
+train_loss = 0.3534,  train_acc = 0.9192,  train_prec = 0.8447,  train_recall = 0.7419,  train_f1 = 0.7900,  train_aucroc = 0.9549,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 3.3994,  eval_acc = 0.5860,  eval_prec = 0.2267,  eval_recall = 0.7778,  eval_f1 = 0.3511,  eval_aucroc = 0.6884,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002965
+Elapsed Time:  00:25:28.66
+21/02/2021 11:19:37 PM : INFO - New High Score! Saving model...
+21/02/2021 11:19:38 PM : INFO - current patience: 0
+21/02/2021 11:25:01 PM : INFO - New High Score! Saving model...
+
+Epoch: 6/30,            
+train_loss = 0.2732,  train_acc = 0.9414,  train_prec = 0.8804,  train_recall = 0.8104,  train_f1 = 0.8439,  train_aucroc = 0.9732,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 3.5455,  eval_acc = 0.6500,  eval_prec = 0.4211,  eval_recall = 0.7647,  eval_f1 = 0.5431,  eval_aucroc = 0.6956,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00002946
+Elapsed Time:  00:30:52.74
+21/02/2021 11:25:02 PM : INFO - current patience: 0
+21/02/2021 11:27:55 PM : WARNING - Keyboard interrupt by user detected...
+Closing the tensorboard writer!
