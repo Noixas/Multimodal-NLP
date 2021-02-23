@@ -24,7 +24,6 @@ class MemeUniter(nn.Module):
     def forward(self, **kwargs):
         out = self.uniter_model(**kwargs)
         out = self.uniter_model.pooler(out)
-        print(kwargs)
         gender_race_probs = kwargs["gender_race_probs"]
         out = torch.cat((out, gender_race_probs), 1) # concatenate the uniter output with gender and race probabilities
         out = self.linear_1(out)
