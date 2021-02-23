@@ -7,7 +7,11 @@ data/XjiOc5ycDBRRNwbhRlgH.zip
 
 .vscode/
 
-dataset/
+dataset/own_features*/
+dataset/img/
+dataset/*.jsonl
+dataset/*.txt
+dataset/*.md
 
 papers/
 
@@ -31,3 +35,7 @@ model_checkpoints/
 *.zip
 
 Untitled.ipynb
+
+*.xz
+
+dataset/view\?usp=sharing
