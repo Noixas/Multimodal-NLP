@@ -467,14 +467,14 @@ class TrainerUniter():
         self.preds = self.model(img_feat=self.batch['img_feat'], img_pos_feat=self.batch['img_pos_feat'], input_ids=self.batch['input_ids'],
                                 position_ids=self.batch['position_ids'], attention_mask=self.batch[
                                     'attn_mask'], gather_index=self.batch['gather_index'],
-                                output_all_encoded_layers=False)
+                                output_all_encoded_layers=False, gender_race_probs=self.batch['gender_race_probs'])
         self.calculate_loss(self.preds, self.batch['labels'], grad_step=True)
 
     def test_iter_step(self, batch):
         # Forward pass
         preds = self.model(img_feat=batch['img_feat'], img_pos_feat=batch['img_pos_feat'], input_ids=batch['input_ids'],
                            position_ids=batch['position_ids'], attention_mask=batch['attn_mask'], gather_index=batch['gather_index'],
-                           output_all_encoded_layers=False)
+                           output_all_encoded_layers=False, gender_race_probs=batch['gender_race_probs'])
         return preds.squeeze()
 
 

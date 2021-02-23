@@ -9,6 +9,8 @@ import logging
 import matplotlib.pyplot as plt
 import wandb
 import pandas as pd
+import pickle
+
 try:
     from utils.utils import get_attention_mask, get_gather_index
 except ModuleNotFoundError as e:
@@ -171,6 +173,7 @@ class MemeDataset(data.Dataset):
                               for json_dict in f.readlines()]
         print("Loaded dataset contains ", str(len(self.json_list)), "samples")
         self._load_dataset()
+        self._load_gender_race_preds()
     
 
     def _load_dataset(self):
@@ -209,6 +212,10 @@ class MemeDataset(data.Dataset):
         # Preprocess text if selected
         if self.text_preprocess is not None:
             self.data.text = self.text_preprocess(self.data.text)
+
+    def _load_gender_race_probs(self):
+        with open(f'../dataset/gender_race_preds/{self.name}_gender_race_probs.pickle', 'rb') as f:
+            self.data.gender_race_probs = pickle.load(f)
 
     def __len__(self):
         # YOUR CODE HERE:  mandatory.
@@ -278,12 +285,15 @@ class MemeDataset(data.Dataset):
         img_feat = self.data.img_feats[idx]
         img_pos_feat = self.data.img_pos_feats[idx]
 
+        gender_race_probs = self.data.gender_race_probs
+
         return {
             'img_feat': img_feat,
             'img_pos_feat': img_pos_feat,
             'text': text,
             'label': label,
-            'data_id': data_id}
+            'data_id': data_id,
+            'gender_race_probs':gender_race_probs}
 
     def get_collate_fn(self):
         """
@@ -291,12 +301,13 @@ class MemeDataset(data.Dataset):
         Image features and position features are stacked (with padding) and returned.
         For text, the function "text_padding" takes all text elements, and is expected to return a list or stacked tensor.
         """
-
+        # TODO add gender_race_probs here
         def collate_fn(samples):
             # samples is a list of dictionaries of the form returned by __get_item__()
             # YOUR CODE HERE: Create separate lists for each element by unpacking
-            data_ids, labels, texts, img_feats, img_pos_feats = zip(*[(item["data_id"], item["label"], item["text"], item["img_feat"], item["img_pos_feat"])
-                                                                      for item in samples])
+            data_ids, labels, texts, img_feats, img_pos_feats, gender_race_probs = zip(*[(
+                item["data_id"], item["label"], item["text"], item["img_feat"], item["img_pos_feat"], item["gender_race_probs"])
+                for item in samples])
 
             # YOUR CODE HERE:  Pad 'img_feat' and 'img_pos_feat' tensors using pad_sequence
             img_feat = pad_sequence(
@@ -311,6 +322,7 @@ class MemeDataset(data.Dataset):
             # YOUR CODE HERE:  Stack labels and data_ids into tensors (list --> tensor)
             data_ids = torch.Tensor(list(data_ids))
             labels = torch.Tensor(list(labels))
+            gender_race_probs = torch.Tensor(gender_race_probs)
 
             # Text input
             input_ids = texts['input_ids']
@@ -345,7 +357,9 @@ class MemeDataset(data.Dataset):
                      'attn_mask': attn_mask,
                      'gather_index': gather_index,
                      'labels': labels,
-                     'ids': data_ids}
+                     'ids': data_ids,
+                     'gender_race_probs':gender_race_probs
+                     }
 
             return batch
         return collate_fn
