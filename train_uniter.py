@@ -577,8 +577,8 @@ if __name__ == '__main__':
                         help='Multiplier used to increase the amount of confounders in training data')
     parser.add_argument('--note', type=str, default='',
                         help='Add a note that can be seen in wandb')
-    parser.add_argument('--race_gender_hidden_size', type=int, default=0,
-                        help='Hidden size for race and gender')
+    parser.add_argument('--gender_race_hidden_size', type=int, default=0,
+                        help='Hidden size for gender and race')
 
                         
     args, unparsed = parser.parse_known_args()
@@ -624,6 +624,10 @@ if __name__ == '__main__':
 
     set_seed(config['seed'])
 
+    # if the hidden size for gender and race prob is 8 (number of gender class labels (2) + number of race class labels (6)),
+    # we use them in the model
+    use_gender_race_probs = config['gender_race_hidden_size'] == 8
+
     # Tokenize
     tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
     tokenizer_func = partial(tokenizer, max_length=config['max_txt_len'], padding='max_length',
@@ -631,12 +635,21 @@ if __name__ == '__main__':
 
     # Prepare the datasets and dataloaders for training and evaluation
     train_dataset = MemeDataset(filepath=os.path.join(config['data_path'], config['train_filename']),
-                                feature_dir=config['feature_path'], text_padding=tokenizer_func, filter_text=config["filter_text"],
-                                upsample_multiplier=config["upsample_multiplier"])
+                                feature_dir=config['feature_path'], 
+                                text_padding=tokenizer_func, 
+                                filter_text=config["filter_text"],
+                                upsample_multiplier=config["upsample_multiplier"],
+                                use_gender_race_probs=use_gender_race_probs)
     val_dataset = MemeDataset(filepath=os.path.join(config['data_path'], 'dev_seen.jsonl'),
-                              feature_dir=config['feature_path'], text_padding=tokenizer_func, filter_text=config["filter_text"])
+                              feature_dir=config['feature_path'], 
+                              text_padding=tokenizer_func, 
+                              filter_text=config["filter_text"],
+                              use_gender_race_probs=use_gender_race_probs)
     test_dataset = MemeDataset(filepath=os.path.join(config['data_path'], 'test_seen.jsonl'),
-                               feature_dir=config['feature_path'], text_padding=tokenizer_func, filter_text=config["filter_text"])
+                               feature_dir=config['feature_path'], 
+                               text_padding=tokenizer_func, 
+                               filter_text=config["filter_text"],
+                               use_gender_race_probs=use_gender_race_probs)
 
     config['train_loader'] = data.DataLoader(train_dataset, batch_size=config['batch_size'],
                                              num_workers=config['num_workers'], collate_fn=train_dataset.get_collate_fn(), shuffle=True, pin_memory=True)

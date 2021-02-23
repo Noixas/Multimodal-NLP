@@ -37,7 +37,8 @@ class MemeDataset(data.Dataset):
                  compact_batch: bool = True,
                  confidence_threshold: float = 0.0,
                  filter_text=False,
-                 upsample_multiplier=0):
+                 upsample_multiplier=0,
+                 use_gender_race_probs=False):
         """
         Inputs:
             filepath - Filepath to the ".jsonl" file which stores a list of all data points.
@@ -59,6 +60,7 @@ class MemeDataset(data.Dataset):
         self.return_ids = True
         self.filter_text = filter_text
         self.upsample_multiplier = upsample_multiplier
+        self.use_gender_race_probs = use_gender_race_probs
         print("filter text", self.filter_text)
 
         self._prepare_data_list()
@@ -201,7 +203,8 @@ class MemeDataset(data.Dataset):
                               for json_dict in f.readlines()]
         print("Loaded dataset contains ", str(len(self.json_list)), "samples")
         self._load_dataset()
-        self._load_gender_race_probs()
+        if self.use_gender_race_probs:
+            self._load_gender_race_probs()
     
 
     def _load_dataset(self):
@@ -316,7 +319,8 @@ class MemeDataset(data.Dataset):
         img_feat = self.data.img_feats[idx]
         img_pos_feat = self.data.img_pos_feats[idx]
 
-        gender_race_probs = self.data.gender_race_probs[idx]
+        if self.use_gender_race_probs:
+            gender_race_probs = self.data.gender_race_probs[idx] 
 
         return {
             'img_feat': img_feat,
@@ -324,7 +328,7 @@ class MemeDataset(data.Dataset):
             'text': text,
             'label': label,
             'data_id': data_id,
-            'gender_race_probs':gender_race_probs}
+            'gender_race_probs':gender_race_probs if self.use_gender_race_probs else None}
 
     def get_collate_fn(self):
         """
@@ -353,7 +357,7 @@ class MemeDataset(data.Dataset):
             # YOUR CODE HERE:  Stack labels and data_ids into tensors (list --> tensor)
             data_ids = torch.Tensor(list(data_ids))
             labels = torch.Tensor(list(labels))
-            gender_race_probs = torch.Tensor(gender_race_probs)
+            gender_race_probs = torch.Tensor(gender_race_probs) if self.use_gender_race_probs else None
 
             # Text input
             input_ids = texts['input_ids']
