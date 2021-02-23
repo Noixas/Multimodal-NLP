@@ -1,0 +1,49 @@
+diff --git a/data/meme_dataset.py b/data/meme_dataset.py
+index 3e9ee53..4df775c 100644
+--- a/data/meme_dataset.py
++++ b/data/meme_dataset.py
+@@ -201,7 +201,7 @@ class MemeDataset(data.Dataset):
+                               for json_dict in f.readlines()]
+         print("Loaded dataset contains ", str(len(self.json_list)), "samples")
+         self._load_dataset()
+-        self._load_gender_race_preds()
++        self._load_gender_race_probs()
+     
+ 
+     def _load_dataset(self):
+@@ -242,7 +242,7 @@ class MemeDataset(data.Dataset):
+             self.data.text = self.text_preprocess(self.data.text)
+ 
+     def _load_gender_race_probs(self):
+-        with open(f'../dataset/gender_race_preds/{self.name}_gender_race_probs.pickle', 'rb') as f:
++        with open(f'dataset/gender_race_probs/{self.name}_gender_race_probs.pickle', 'rb') as f:
+             self.data.gender_race_probs = pickle.load(f)
+ 
+     def __len__(self):
+diff --git a/wandb/debug-internal.log b/wandb/debug-internal.log
+index f09c7de..a3774a1 120000
+--- a/wandb/debug-internal.log
++++ b/wandb/debug-internal.log
+@@ -1 +1 @@
+-run-20210222_215454-1602o824/logs/debug-internal.log
+\ No newline at end of file
++run-20210223_112430-3c31apdq/logs/debug-internal.log
+\ No newline at end of file
+diff --git a/wandb/debug.log b/wandb/debug.log
+index 9d13059..b42a293 120000
+--- a/wandb/debug.log
++++ b/wandb/debug.log
+@@ -1 +1 @@
+-run-20210222_215454-1602o824/logs/debug.log
+\ No newline at end of file
++run-20210223_112430-3c31apdq/logs/debug.log
+\ No newline at end of file
+diff --git a/wandb/latest-run b/wandb/latest-run
+index 15abb24..897ad3d 120000
+--- a/wandb/latest-run
++++ b/wandb/latest-run
+@@ -1 +1 @@
+-run-20210222_215454-1602o824
+\ No newline at end of file
++run-20210223_112430-3c31apdq
+\ No newline at end of file

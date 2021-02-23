@@ -105,7 +105,7 @@ class TrainerUniter():
                                                               img_dim=IMG_DIM,
                                                               img_label_dim=IMG_LABEL_DIM)
             self.model = MemeUniter(uniter_model=base_model.uniter,
-                                    hidden_size=base_model.uniter.config.hidden_size + self.config["race_gender_hidden_size"],
+                                    hidden_size=base_model.uniter.config.hidden_size,
                                     n_classes=self.config['n_classes'])
         else:
             self.load_model()
@@ -579,10 +579,6 @@ if __name__ == '__main__':
                         help='Multiplier used to increase the amount of confounders in training data')
     parser.add_argument('--note', type=str, default='',
                         help='Add a note that can be seen in wandb')
-    parser.add_argument('--race_gender_hidden_size', type=int, default=0,
-                        help='Hidden size for race and gender')
-
-                        
     args, unparsed = parser.parse_known_args()
     config = args.__dict__
     wandb.config.update(config)

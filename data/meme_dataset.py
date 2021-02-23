@@ -313,7 +313,7 @@ class MemeDataset(data.Dataset):
         img_feat = self.data.img_feats[idx]
         img_pos_feat = self.data.img_pos_feats[idx]
 
-        gender_race_probs = self.data.gender_race_probs
+        gender_race_probs = self.data.gender_race_probs[idx]
 
         return {
             'img_feat': img_feat,
