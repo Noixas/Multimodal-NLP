@@ -235,7 +235,7 @@ class MemeDataset(data.Dataset):
 
         # YOUR CODE HERE:  Iterate over data ids and load img_feats and img_pos_feats into lists (defined above) using _load_img_feature
         both_img_feats = [(self._load_img_feature(
-            img_id, normalize=wandb.config.no_normalize_img)) for img_id in self.data.ids]
+            img_id, normalize=wandb.config.normalize_img)) for img_id in self.data.ids]
         # FIXME something might be wrong here
         # split a list of tuples into two separate lists
         self.data.img_feats, self.data.img_pos_feats = zip(*both_img_feats)

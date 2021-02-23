@@ -1,0 +1,117 @@
+23/02/2021 01:10:29 PM : INFO - Data path checked..
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+23/02/2021 01:10:29 PM : INFO - Model save path checked..
+23/02/2021 01:10:29 PM : INFO - config JSON path checked..
+23/02/2021 01:10:29 PM : INFO - Tensorboard Visualization path checked..
+23/02/2021 01:10:29 PM : INFO - Cleaning Visualization path of older tensorboard files...
+
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 1.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 1
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.2
+filter_text : False
+no_normalize_img : True
+train_filename : train.jsonl
+upsample_multiplier : 0
+note : 
+race_gender_hidden_size : 8
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text False
+Loaded dataset contains  8500 samples
+filter text False
+Loaded dataset contains  500 samples
+filter text False
+Loaded dataset contains  1000 samples
+23/02/2021 01:10:36 PM : INFO - Using pretrained UNITER base model ./model_checkpoints/uniter-base.pt
+23/02/2021 01:10:36 PM : INFO - Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 28996
+}
+
+
+
+====================================================================================================
+					 Training Network
+====================================================================================================
+
+Beginning training at:  2021-02-23 13:10:40.457999 
+
+
+Epoch: 1/1,            
+train_loss = 0.6138,  train_acc = 0.6608,  train_prec = 0.3408,  train_recall = 0.5354,  train_f1 = 0.4165,  train_aucroc = 0.6622,  train_opt_accuracy = -1.0000,  train_threshold = -1.0000            
+eval_loss = 0.7456,  eval_acc = 0.5920,  eval_prec = 0.2753,  eval_recall = 0.7312,  eval_f1 = 0.4000,  eval_aucroc = 0.6790,  eval_opt_accuracy = -1.0000,  eval_threshold = -1.0000                
+lr  =  0.00001596
+Elapsed Time:  00:02:41.4323/02/2021 01:13:21 PM : INFO - New High Score! Saving model...
+
+23/02/2021 01:13:23 PM : INFO - current patience: 0
+
+----------------------------------------------------------------------------------------------------
+23/02/2021 01:13:23 PM : INFO - Maximum epochs of 1 reached. Finished training !!
+
+--------------------------------------------------
+Best Validation scores:
+--------------------------------------------------
+
+Val accuracy of best model = 59.200
+Val AUC-ROC of best model = 67.896
+Val precision of best model = 27.530
+Val recall of best model = 73.118
+Val f1 of best model = 40.000
+
+--------------------------------------------------
+		Evaluating on test set
+--------------------------------------------------
+23/02/2021 01:13:23 PM : INFO - Using UNITER model ./model_checkpoints/meme.pt
+23/02/2021 01:13:24 PM : INFO - Exporting dev_seen predictions...
+23/02/2021 01:13:27 PM : INFO - Finished export of dev_seen predictions
+23/02/2021 01:13:27 PM : INFO - Optimal threshold on validation dataset: 0.5000 (accuracy=59.20%)
+23/02/2021 01:13:27 PM : INFO - Export and testing on test_seen...
+23/02/2021 01:13:33 PM : INFO - Finished export of test predictions

@@ -1,0 +1,31 @@
+2021-02-23 13:19:02,544 INFO    MainThread:1574317 [wandb_setup.py:_flush():70] setting env: {}
+2021-02-23 13:19:02,544 INFO    MainThread:1574317 [wandb_setup.py:_flush():70] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2021-02-23 13:19:02,544 INFO    MainThread:1574317 [wandb_setup.py:_flush():70] setting login settings: {}
+2021-02-23 13:19:02,544 INFO    MainThread:1574317 [wandb_init.py:_log_setup():319] Logging user logs to /home/astro/Documents/UvA/Block 4 - NLP2/Multimodal NLP/Multimodal-NLP/wandb/run-20210223_131902-g3lyqbhf/logs/debug.log
+2021-02-23 13:19:02,544 INFO    MainThread:1574317 [wandb_init.py:_log_setup():320] Logging internal logs to /home/astro/Documents/UvA/Block 4 - NLP2/Multimodal NLP/Multimodal-NLP/wandb/run-20210223_131902-g3lyqbhf/logs/debug-internal.log
+2021-02-23 13:19:02,544 INFO    MainThread:1574317 [wandb_init.py:init():351] calling init triggers
+2021-02-23 13:19:02,545 INFO    MainThread:1574317 [wandb_init.py:init():358] wandb.init called with sweep_config: {}
+config: {}
+2021-02-23 13:19:02,545 INFO    MainThread:1574317 [wandb_init.py:init():404] starting backend
+2021-02-23 13:19:02,556 INFO    MainThread:1574317 [backend.py:ensure_launched():81] starting backend process...
+2021-02-23 13:19:02,564 INFO    MainThread:1574317 [backend.py:ensure_launched():86] started backend process with pid: 1574436
+2021-02-23 13:19:02,565 INFO    MainThread:1574317 [wandb_init.py:init():413] backend started and connected
+2021-02-23 13:19:02,566 INFO    MainThread:1574317 [wandb_init.py:init():436] updated telemetry
+2021-02-23 13:19:02,566 INFO    MainThread:1574317 [wandb_init.py:init():459] communicating current version
+2021-02-23 13:19:02,581 WARNING MainThread:1574317 [wandb_init.py:init():739] interrupted
+Traceback (most recent call last):
+  File "/home/astro/anaconda3/envs/nlp2-multimodal/lib/python3.7/site-packages/wandb/sdk/wandb_init.py", line 719, in init
+    run = wi.init()
+  File "/home/astro/anaconda3/envs/nlp2-multimodal/lib/python3.7/site-packages/wandb/sdk/wandb_init.py", line 461, in init
+    current_version=wandb.__version__
+  File "/home/astro/anaconda3/envs/nlp2-multimodal/lib/python3.7/site-packages/wandb/sdk/interface/interface.py", line 729, in communicate_check_version
+    result = self._communicate(rec)
+  File "/home/astro/anaconda3/envs/nlp2-multimodal/lib/python3.7/site-packages/wandb/sdk/interface/interface.py", line 522, in _communicate
+    f = future.get(timeout)
+  File "/home/astro/anaconda3/envs/nlp2-multimodal/lib/python3.7/site-packages/wandb/sdk/interface/interface.py", line 81, in get
+    is_set = self._object_ready.wait(timeout)
+  File "/home/astro/anaconda3/envs/nlp2-multimodal/lib/python3.7/threading.py", line 552, in wait
+    signaled = self._cond.wait(timeout)
+  File "/home/astro/anaconda3/envs/nlp2-multimodal/lib/python3.7/threading.py", line 300, in wait
+    gotit = waiter.acquire(True, timeout)
+KeyboardInterrupt
