@@ -105,7 +105,7 @@ class TrainerUniter():
                                                               img_dim=IMG_DIM,
                                                               img_label_dim=IMG_LABEL_DIM)
             self.model = MemeUniter(uniter_model=base_model.uniter,
-                                    hidden_size=base_model.uniter.config.hidden_size + self.config["race_gender_hidden_size"] ,
+                                    hidden_size=base_model.uniter.config.hidden_size + self.config["gender_race_hidden_size"] ,
                                     n_classes=self.config['n_classes'])
         else:
             self.load_model()
@@ -122,7 +122,7 @@ class TrainerUniter():
         uniter_model = UniterModel(uniter_config, img_dim=IMG_DIM)
 
         self.model = MemeUniter(uniter_model=uniter_model,
-                                hidden_size=uniter_model.config.hidden_size+self.config["race_gender_hidden_size"],
+                                hidden_size=uniter_model.config.hidden_size+self.config["gender_race_hidden_size"],
                                 n_classes=self.config['n_classes'])
         self.model.load_state_dict(checkpoint['model_state_dict'])
 
@@ -569,7 +569,7 @@ if __name__ == '__main__':
     # New parameters by team
     parser.add_argument('--filter_text', action='store_true',
                         help='Filter out bounding boxes around text')
-    parser.add_argument('--no_normalize_img', action='store_false',
+    parser.add_argument('--normalize_img', action='store_true',
                         help='Normalize images by dividing them by their height and width. Default=True')
     parser.add_argument('--train_filename', type=str, default='train.jsonl',
                         help='The name of the trainin json file to load.')

@@ -29,7 +29,7 @@ def get_gender_race_predictions(args):
     img_preds = np.zeros((len(json_list), 8))
     # imgs_with_people_idxs = []
     # imgs_with_people_paths = []
-    # for i, example in enumerate(json_list):
+    # for i, example in enumerate(json_list): 
     #     img_path = example["img"]
     #     img_id = str(example["id"]).zfill(5)
     #     info_np_file = os.path.join(args.feature_dir, img_id + "_info.npy")
