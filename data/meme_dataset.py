@@ -242,7 +242,7 @@ class MemeDataset(data.Dataset):
             self.data.text = self.text_preprocess(self.data.text)
 
     def _load_gender_race_probs(self):
-        with open(f'dataset/gender_race_probs/{self.name}_gender_race_probs.pickle', 'rb') as f:
+        with open(f'dataset/gender_race_probs/{self.name}_gender_race_probs_dict.pickle', 'rb') as f:
             self.data.gender_race_probs = pickle.load(f)
 
     def __len__(self):
