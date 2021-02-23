@@ -243,7 +243,10 @@ class MemeDataset(data.Dataset):
 
     def _load_gender_race_probs(self):
         with open(f'dataset/gender_race_probs/{self.name}_gender_race_probs_dict.pickle', 'rb') as f:
-            self.data.gender_race_probs = pickle.load(f)
+            gender_race_probs = pickle.load(f)
+        self.data.gender_race_probs = list()
+        for i, image_id in enumerate(self.data.ids):
+            self.data.gender_race_probs.append(gender_race_probs[image_id])
 
     def __len__(self):
         # YOUR CODE HERE:  mandatory.

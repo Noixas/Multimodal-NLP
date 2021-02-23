@@ -105,12 +105,10 @@ class TrainerUniter():
                                                               img_dim=IMG_DIM,
                                                               img_label_dim=IMG_LABEL_DIM)
             self.model = MemeUniter(uniter_model=base_model.uniter,
-                                    hidden_size=base_model.uniter.config.hidden_size + self.config["race_gender_hidden_size"],
+                                    hidden_size=base_model.uniter.config.hidden_size + self.config["race_gender_hidden_size"] ,
                                     n_classes=self.config['n_classes'])
         else:
             self.load_model()
-        print("MemeUniter")
-        print(self.model)
 
     def load_model(self):
         # Load pretrained model
@@ -124,7 +122,7 @@ class TrainerUniter():
         uniter_model = UniterModel(uniter_config, img_dim=IMG_DIM)
 
         self.model = MemeUniter(uniter_model=uniter_model,
-                                hidden_size=uniter_model.config.hidden_size,
+                                hidden_size=uniter_model.config.hidden_size+self.config["race_gender_hidden_size"],
                                 n_classes=self.config['n_classes'])
         self.model.load_state_dict(checkpoint['model_state_dict'])
 
