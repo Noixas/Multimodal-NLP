@@ -459,7 +459,7 @@ class TrainerUniter():
         # Forward pass
         preds = self.model(img_feat=batch['img_feat'], img_pos_feat=batch['img_pos_feat'], input_ids=batch['input_ids'],
                            position_ids=batch['position_ids'], attention_mask=batch['attn_mask'], gather_index=batch['gather_index'],
-                           output_all_encoded_layers=False)
+                           output_all_encoded_layers=False, gender_race_probs=batch['gender_race_probs'])
         self.calculate_loss(preds, batch['labels'], grad_step=False)
 
     def train_iter_step(self):
