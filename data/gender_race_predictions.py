@@ -15,7 +15,9 @@ import deepface from a cloned git repo assuming your directory looks like that:
 '''
 sys.path.append(os.path.join(sys.path[0], '../../deepface/'))
 from deepface import DeepFace
-
+import tensorflow as tf
+physical_devices = tf.config.list_physical_devices('GPU') 
+tf.config.experimental.set_memory_growth(physical_devices[0], True)
 def get_gender_race_predictions(args):
     with open(args.filepath) as f:
         json_list = [json.loads(json_dict) for json_dict in f.readlines()]
@@ -39,7 +41,7 @@ def get_gender_race_predictions(args):
     #         imgs_with_people_paths.append(img_path)
     
     # prepare a list of image paths for bulk prediction
-    img_paths = ["dataset/" + img_path for img_path in img_paths]       
+    img_paths = ["../dataset/" + img_path for img_path in img_paths]       
     # make predictions for all images with people - preds is a list where each element is a matrix of shape (num_people_in_img, 8)
     print("Detect gender and ethnicity", img_paths[0])
     preds = DeepFace.analyze(img_paths, actions = ['gender', 'race'], enforce_detection = False)

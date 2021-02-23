@@ -577,7 +577,8 @@ if __name__ == '__main__':
                         help='The name of the trainin json file to load.')
     parser.add_argument('--upsample_multiplier', type=int, default=0,
                         help='Multiplier used to increase the amount of confounders in training data')
-
+    parser.add_argument('--note', type=str, default='',
+                        help='Add a note that can be seen in wandb')
     args, unparsed = parser.parse_known_args()
     config = args.__dict__
     wandb.config.update(config)

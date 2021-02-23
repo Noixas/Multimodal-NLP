@@ -1,0 +1,77 @@
+21/02/2021 01:00:13 PM : INFO - Data path checked..
+21/02/2021 01:00:13 PM : INFO - Model save path checked..
+21/02/2021 01:00:13 PM : INFO - config JSON path checked..
+21/02/2021 01:00:13 PM : INFO - Tensorboard Visualization path checked..
+21/02/2021 01:00:13 PM : INFO - Cleaning Visualization path of older tensorboard files...
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Running training with the following parameters: 
+
+data_path : ./dataset
+model_path : ./model_checkpoints
+vis_path : ./vis_checkpoints
+model_save_name : meme.pt
+no_model_checkpoints : False
+remove_checkpoints : False
+config : config/uniter-base.json
+feature_path : ./dataset/own_features
+pretrained_model_file : uniter-base.pt
+max_txt_len : 60
+max_bb : 100
+min_bb : 10
+num_bb : 36
+optimizer : adam
+loss_func : bce_logits
+optimize_for : aucroc
+scheduler : warmup_cosine
+beta1 : 0.9
+beta2 : 0.999
+batch_size : 16
+num_workers : 0
+gradient_accumulation : 2
+max_grad_norm : 5
+pos_wt : 2.0
+lr : 3e-05
+warmup_steps : 500
+weight_decay : 0.001
+max_epoch : 30
+lr_decay_step : 3
+lr_decay_factor : 0.8
+patience : 5.0
+early_stop_thresh : 0.001
+seed : 43
+log_every : 2000
+fc_dim : 64
+dropout : 0.2
+filter_text : True
+no_normalize_img : True
+train_filename : train.jsonl
+upsample_multiplier : 3
+device : cuda
+n_classes : 1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter text True
+Confounders upsampled by 3 times. 
+ From 2466  samples to 7398
+Saved confounder samples to: 
+./dataset/train_upsampled_confounders_3x_times.jsonl
+Loaded dataset contains  15898 samples
+Traceback (most recent call last):
+  File "train_uniter.py", line 631, in <module>
+    upsample_multiplier=config["upsample_multiplier"])
+  File "/home/astro/Documents/UvA/Block 4 - NLP2/Multimodal NLP/Multimodal-NLP/data/meme_dataset.py", line 62, in __init__
+    self._prepare_data_list()
+  File "/home/astro/Documents/UvA/Block 4 - NLP2/Multimodal NLP/Multimodal-NLP/data/meme_dataset.py", line 133, in _prepare_data_list
+    self._load_dataset()
+  File "/home/astro/Documents/UvA/Block 4 - NLP2/Multimodal NLP/Multimodal-NLP/data/meme_dataset.py", line 164, in _load_dataset
+    img_id, normalize=wandb.config.normalize_img)) for img_id in self.data.ids]
+  File "/home/astro/Documents/UvA/Block 4 - NLP2/Multimodal NLP/Multimodal-NLP/data/meme_dataset.py", line 164, in <listcomp>
+    img_id, normalize=wandb.config.normalize_img)) for img_id in self.data.ids]
+  File "/home/astro/anaconda3/envs/nlp2-multimodal/lib/python3.7/site-packages/wandb/sdk/wandb_config.py", line 152, in __getattr__
+    return self.__getitem__(key)
+  File "/home/astro/anaconda3/envs/nlp2-multimodal/lib/python3.7/site-packages/wandb/sdk/wandb_config.py", line 123, in __getitem__
+    return self._items[key]
+KeyError: 'normalize_img'

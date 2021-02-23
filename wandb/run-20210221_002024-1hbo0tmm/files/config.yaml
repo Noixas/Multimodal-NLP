@@ -1,0 +1,146 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.10.19
+    framework: huggingface
+    huggingface_version: 3.2.0
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.7.5
+    t:
+      1:
+      - 1
+      - 3
+      - 5
+      - 11
+      2:
+      - 1
+      - 3
+      - 5
+      - 11
+      3:
+      - 1
+      - 2
+      - 3
+      4: 3.7.5
+      5: 0.10.19
+      6: 3.2.0
+batch_size:
+  desc: null
+  value: 16
+beta1:
+  desc: null
+  value: 0.9
+beta2:
+  desc: null
+  value: 0.999
+config:
+  desc: null
+  value: config/uniter-base.json
+data_path:
+  desc: null
+  value: ./dataset
+dropout:
+  desc: null
+  value: 0.2
+early_stop_thresh:
+  desc: null
+  value: 0.001
+fc_dim:
+  desc: null
+  value: 64
+feature_path:
+  desc: null
+  value: ./dataset/own_features
+filter_text:
+  desc: null
+  value: true
+gradient_accumulation:
+  desc: null
+  value: 2
+log_every:
+  desc: null
+  value: 2000
+loss_func:
+  desc: null
+  value: bce_logits
+lr:
+  desc: null
+  value: 3.0e-05
+lr_decay_factor:
+  desc: null
+  value: 0.8
+lr_decay_step:
+  desc: null
+  value: 3
+max_bb:
+  desc: null
+  value: 100
+max_epoch:
+  desc: null
+  value: 30
+max_grad_norm:
+  desc: null
+  value: 5
+max_txt_len:
+  desc: null
+  value: 60
+min_bb:
+  desc: null
+  value: 10
+model_path:
+  desc: null
+  value: ./model_checkpoints
+model_save_name:
+  desc: null
+  value: meme.pt
+no_model_checkpoints:
+  desc: null
+  value: false
+normalize_img:
+  desc: null
+  value: true
+num_bb:
+  desc: null
+  value: 36
+num_workers:
+  desc: null
+  value: 0
+optimize_for:
+  desc: null
+  value: aucroc
+optimizer:
+  desc: null
+  value: adam
+patience:
+  desc: null
+  value: 5.0
+pos_wt:
+  desc: null
+  value: 1
+pretrained_model_file:
+  desc: null
+  value: uniter-base.pt
+remove_checkpoints:
+  desc: null
+  value: false
+scheduler:
+  desc: null
+  value: warmup_cosine
+seed:
+  desc: null
+  value: 43
+train_filename:
+  desc: null
+  value: upsampled_1_train.jsonl
+vis_path:
+  desc: null
+  value: ./vis_checkpoints
+warmup_steps:
+  desc: null
+  value: 500
+weight_decay:
+  desc: null
+  value: 0.001

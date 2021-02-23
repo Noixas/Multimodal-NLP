@@ -1,0 +1,83 @@
+2021-02-21 22:53:51,356 INFO    MainThread:522137 [wandb_setup.py:_flush():70] setting env: {}
+2021-02-21 22:53:51,357 INFO    MainThread:522137 [wandb_setup.py:_flush():70] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2021-02-21 22:53:51,357 INFO    MainThread:522137 [wandb_setup.py:_flush():70] setting login settings: {}
+2021-02-21 22:53:51,357 INFO    MainThread:522137 [wandb_init.py:_log_setup():319] Logging user logs to /home/astro/Documents/UvA/Block 4 - NLP2/Multimodal NLP/Multimodal-NLP/wandb/run-20210221_225351-1chqxz4h/logs/debug.log
+2021-02-21 22:53:51,357 INFO    MainThread:522137 [wandb_init.py:_log_setup():320] Logging internal logs to /home/astro/Documents/UvA/Block 4 - NLP2/Multimodal NLP/Multimodal-NLP/wandb/run-20210221_225351-1chqxz4h/logs/debug-internal.log
+2021-02-21 22:53:51,357 INFO    MainThread:522137 [wandb_init.py:init():351] calling init triggers
+2021-02-21 22:53:51,357 INFO    MainThread:522137 [wandb_init.py:init():358] wandb.init called with sweep_config: {}
+config: {}
+2021-02-21 22:53:51,357 INFO    MainThread:522137 [wandb_init.py:init():404] starting backend
+2021-02-21 22:53:51,366 INFO    MainThread:522137 [backend.py:ensure_launched():81] starting backend process...
+2021-02-21 22:53:51,371 INFO    MainThread:522137 [backend.py:ensure_launched():86] started backend process with pid: 522199
+2021-02-21 22:53:51,371 INFO    MainThread:522137 [wandb_init.py:init():413] backend started and connected
+2021-02-21 22:53:51,372 INFO    MainThread:522137 [wandb_init.py:init():436] updated telemetry
+2021-02-21 22:53:51,373 INFO    MainThread:522137 [wandb_init.py:init():459] communicating current version
+2021-02-21 22:53:51,755 INFO    MainThread:522137 [wandb_init.py:init():464] got version response 
+2021-02-21 22:53:51,755 INFO    MainThread:522137 [wandb_init.py:init():472] communicating run to backend with 30 second timeout
+2021-02-21 22:53:51,931 INFO    MainThread:522137 [wandb_init.py:init():495] starting run threads in backend
+2021-02-21 22:53:52,684 INFO    MainThread:522137 [wandb_run.py:_console_start():1411] atexit reg
+2021-02-21 22:53:52,684 INFO    MainThread:522137 [wandb_run.py:_redirect():1274] redirect: SettingsConsole.REDIRECT
+2021-02-21 22:53:52,684 INFO    MainThread:522137 [wandb_run.py:_redirect():1279] Redirecting console.
+2021-02-21 22:53:52,684 INFO    MainThread:522137 [redirect.py:install():213] install start
+2021-02-21 22:53:52,685 INFO    MainThread:522137 [redirect.py:install():228] install stop
+2021-02-21 22:53:52,685 INFO    MainThread:522137 [redirect.py:install():213] install start
+2021-02-21 22:53:52,685 INFO    MainThread:522137 [redirect.py:install():228] install stop
+2021-02-21 22:53:52,685 INFO    MainThread:522137 [wandb_run.py:_redirect():1325] Redirects installed.
+2021-02-21 22:53:52,685 INFO    MainThread:522137 [wandb_init.py:init():518] run started, returning control to user process
+2021-02-21 22:53:52,688 INFO    MainThread:522137 [wandb_run.py:_config_callback():663] config_cb None None {'data_path': './dataset', 'model_path': './model_checkpoints', 'vis_path': './vis_checkpoints', 'model_save_name': 'meme.pt', 'no_model_checkpoints': False, 'remove_checkpoints': False, 'config': 'config/uniter-base.json', 'feature_path': './dataset/own_features', 'pretrained_model_file': 'uniter-base.pt', 'max_txt_len': 60, 'max_bb': 100, 'min_bb': 10, 'num_bb': 36, 'optimizer': 'adam', 'loss_func': 'bce_logits', 'optimize_for': 'aucroc', 'scheduler': 'warmup_cosine', 'beta1': 0.9, 'beta2': 0.999, 'batch_size': 16, 'num_workers': 0, 'gradient_accumulation': 2, 'max_grad_norm': 5, 'pos_wt': 3.0, 'lr': 3e-05, 'warmup_steps': 500, 'weight_decay': 0.001, 'max_epoch': 30, 'lr_decay_step': 3, 'lr_decay_factor': 0.8, 'patience': 5.0, 'early_stop_thresh': 0.001, 'seed': 43, 'log_every': 2000, 'fc_dim': 64, 'dropout': 0.2, 'filter_text': True, 'no_normalize_img': True, 'train_filename': 'upsampled_augmented_and_confounders_by_2x_train.jsonl', 'upsample_multiplier': 0}
+2021-02-21 22:53:52,690 INFO    MainThread:522137 [wandb_run.py:_tensorboard_callback():734] tensorboard callback: ./vis_checkpoints, None
+2021-02-21 22:54:07,027 INFO    MainThread:522137 [wandb_watch.py:watch():39] Watching
+2021-02-21 23:27:55,300 INFO    MainThread:522137 [wandb_run.py:_atexit_cleanup():1381] got exitcode: 0
+2021-02-21 23:27:55,300 INFO    MainThread:522137 [wandb_run.py:_restore():1353] restore
+2021-02-21 23:27:55,300 INFO    MainThread:522137 [redirect.py:uninstall():232] uninstall start
+2021-02-21 23:27:55,300 INFO    MainThread:522137 [redirect.py:_stop():287] _stop: stdout
+2021-02-21 23:27:55,300 INFO    MainThread:522137 [redirect.py:_stop():293] _stop closed: stdout
+2021-02-21 23:27:55,301 INFO    stdout    :522137 [redirect.py:_pipe_relay():129] relay done saw last write: stdout
+2021-02-21 23:27:55,301 INFO    stdout    :522137 [redirect.py:_pipe_relay():145] relay done done: stdout
+2021-02-21 23:27:55,301 INFO    MainThread:522137 [redirect.py:_stop():299] _stop joined: stdout
+2021-02-21 23:27:55,301 INFO    MainThread:522137 [redirect.py:_stop():301] _stop rd closed: stdout
+2021-02-21 23:27:55,301 INFO    MainThread:522137 [redirect.py:uninstall():236] uninstall done
+2021-02-21 23:27:55,301 INFO    MainThread:522137 [redirect.py:uninstall():232] uninstall start
+2021-02-21 23:27:55,301 INFO    MainThread:522137 [redirect.py:_stop():287] _stop: stderr
+2021-02-21 23:27:55,301 INFO    MainThread:522137 [redirect.py:_stop():293] _stop closed: stderr
+2021-02-21 23:27:55,301 INFO    stderr    :522137 [redirect.py:_pipe_relay():129] relay done saw last write: stderr
+2021-02-21 23:27:55,301 INFO    stderr    :522137 [redirect.py:_pipe_relay():145] relay done done: stderr
+2021-02-21 23:27:55,301 INFO    MainThread:522137 [redirect.py:_stop():299] _stop joined: stderr
+2021-02-21 23:27:55,301 INFO    MainThread:522137 [redirect.py:_stop():301] _stop rd closed: stderr
+2021-02-21 23:27:55,301 INFO    MainThread:522137 [redirect.py:uninstall():236] uninstall done
+2021-02-21 23:27:55,478 INFO    MainThread:522137 [wandb_run.py:_wait_for_finish():1504] got exit ret: file_counts {
+  wandb_count: 1
+  media_count: 1
+  other_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 34379
+  total_bytes: 34379
+}
+
+2021-02-21 23:28:01,341 INFO    MainThread:522137 [wandb_run.py:_wait_for_finish():1504] got exit ret: file_counts {
+  wandb_count: 1
+  media_count: 1
+  other_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 34379
+  total_bytes: 34379
+}
+
+2021-02-21 23:28:03,345 INFO    MainThread:522137 [wandb_run.py:_wait_for_finish():1504] got exit ret: done: true
+exit_result {
+}
+file_counts {
+  wandb_count: 5
+  media_count: 1
+  other_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 470323
+  total_bytes: 470323
+}
+
+2021-02-21 23:28:04,575 INFO    MainThread:522137 [wandb_run.py:_show_summary():1659] rendering summary
+2021-02-21 23:28:04,576 INFO    MainThread:522137 [wandb_run.py:_show_history():1697] rendering history
+2021-02-21 23:28:04,576 INFO    MainThread:522137 [wandb_run.py:_show_files():1726] logging synced files
