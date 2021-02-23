@@ -338,7 +338,7 @@ class UniterModel(UniterPreTrainedModel):
                 img_feat, img_pos_feat,
                 attention_mask, gather_index=None, img_masks=None,
                 output_all_encoded_layers=True,
-                txt_type_ids=None, img_type_ids=None):
+                txt_type_ids=None, img_type_ids=None, gender_race_probs=None):
         # compute self-attention mask
         extended_attention_mask = attention_mask.unsqueeze(1).unsqueeze(2)
         extended_attention_mask = extended_attention_mask.to(
