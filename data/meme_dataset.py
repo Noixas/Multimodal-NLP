@@ -38,7 +38,8 @@ class MemeDataset(data.Dataset):
                  confidence_threshold: float = 0.0,
                  filter_text=False,
                  upsample_multiplier=0,
-                 use_gender_race_probs=False):
+                 use_gender_race_probs=False,
+                 upsample_options = "2"):
         """
         Inputs:
             filepath - Filepath to the ".jsonl" file which stores a list of all data points.
@@ -61,12 +62,14 @@ class MemeDataset(data.Dataset):
         self.filter_text = filter_text
         self.upsample_multiplier = upsample_multiplier
         self.use_gender_race_probs = use_gender_race_probs
+        self.upsample_options = upsample_options.strip()
+        print(self.upsample_options)
         print("filter text", self.filter_text)
 
         self._prepare_data_list()
 
     def upsample_confounders(self):
-        SEED = 2021
+        SEED = 2021 
         multiplier = self.upsample_multiplier
         # read data
         train_data_df = pd.read_json(self.filepath, lines=True)
@@ -74,27 +77,29 @@ class MemeDataset(data.Dataset):
         duplicated_text = train_data_df[train_data_df['text'].duplicated(
             keep=False)]
         new_suffix = ''
-
+        rows_confounders_upsampled_1 = pd.DataFrame()
         #################################
         #Upsample not hateful only - option 1
         #################################
-        # # Explicitely get the text of the hateful memes, since some duplicated text appears only in non hateful memes.
-        # text_confounders = duplicated_text.loc[(
-        #     duplicated_text['label'] == 1)]['text']
-        # # Get rows of non hateful memes that contain duplicated text.
-        # rows_label_0 = duplicated_text.loc[(duplicated_text['label'] == 0)]
-        # # Get rows with label 0 that their text appeared in hateful memes.
-        # rows_confounders = rows_label_0.loc[rows_label_0['text'].apply(
-        #     (lambda x: any(item for item in text_confounders if item in x)))]
+        if "1" in self.upsample_options:
+            print("Using upsampling option 1")
+            # Explicitely get the text of the hateful memes, since some duplicated text appears only in non hateful memes.
+            text_confounders = duplicated_text.loc[(
+                duplicated_text['label'] == 1)]['text']
+            # Get rows of non hateful memes that contain duplicated text.
+            rows_label_0 = duplicated_text.loc[(duplicated_text['label'] == 0)]
+            # Get rows with label 0 that their text appeared in hateful memes.
+            rows_confounders = rows_label_0.loc[rows_label_0['text'].apply(
+                (lambda x: any(item for item in text_confounders if item in x)))]
 
-        # len_rows_confounders = len(rows_confounders)
-        
-        # # Create an upsample of data by sampling with replacement and reseting index
-        # rows_confounders_upsampled = rows_confounders.sample(
-        #     n=len_rows_confounders*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
-        # print("Confounders upsampled by", str(multiplier), "times. \n From", str(
-        #     len_rows_confounders), " samples to", str(len(rows_confounders_upsampled)))
-        # print("Upsample not hateful only - option 1")
+            len_rows_confounders = len(rows_confounders)
+            
+            # Create an upsample of data by sampling with replacement and reseting index
+            rows_confounders_upsampled_1 = rows_confounders.sample(
+                n=len_rows_confounders*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
+            print("Confounders upsampled by", str(multiplier), "times. \n From", str(
+                len_rows_confounders), " samples to", str(len(rows_confounders_upsampled_1)))
+            print("Upsample not hateful only - option 1")
         
 
 
@@ -102,30 +107,33 @@ class MemeDataset(data.Dataset):
         #################################  #BEST RESULTS
         #Upsample both parts of confounders, hateful and non hateful - option 2
         #################################
-        # Explicitely get the text of the hateful memes, since some duplicated text appears only in non hateful memes.
-        text_confounders_label1 = duplicated_text.loc[(
-            duplicated_text['label'] == 1)]
-        text_confounders = text_confounders_label1['text']
-         # Get rows of non hateful memes that contain duplicated text.
-        rows_label_0 = duplicated_text.loc[(duplicated_text['label'] == 0)]
-        # Get rows with label 0 that their text appeared in hateful memes.
-        rows_confounders = rows_label_0.loc[rows_label_0['text'].apply(
-            (lambda x: any(item for item in text_confounders if item in x)))]
+        rows_confounders_upsampled_2 = pd.DataFrame()
+        if "2" in self.upsample_options:
+            print("Using upsampling option 2")
+            # Explicitely get the text of the hateful memes, since some duplicated text appears only in non hateful memes.
+            text_confounders_label1 = duplicated_text.loc[(
+                duplicated_text['label'] == 1)]
+            text_confounders = text_confounders_label1['text']
+            # Get rows of non hateful memes that contain duplicated text.
+            rows_label_0 = duplicated_text.loc[(duplicated_text['label'] == 0)]
+            # Get rows with label 0 that their text appeared in hateful memes.
+            rows_confounders = rows_label_0.loc[rows_label_0['text'].apply(
+                (lambda x: any(item for item in text_confounders if item in x)))]
 
-        len_rows_confounders = len(rows_confounders)
-        len_rows_confounders_l1 = len(text_confounders_label1)
-        
-        # Create an upsample of data by sampling with replacement and reseting index
-        rows_confounders_upsampled_label_0 = rows_confounders.sample(
-            n=len_rows_confounders*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
-        rows_confounders_upsampled_label_1=text_confounders_label1.sample(
-            n=len_rows_confounders_l1*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
+            len_rows_confounders = len(rows_confounders)
+            len_rows_confounders_l1 = len(text_confounders_label1)
+            
+            # Create an upsample of data by sampling with replacement and reseting index
+            rows_confounders_upsampled_label_0 = rows_confounders.sample(
+                n=len_rows_confounders*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
+            rows_confounders_upsampled_label_1=text_confounders_label1.sample(
+                n=len_rows_confounders_l1*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
 
-        rows_confounders_upsampled = pd.concat([rows_confounders_upsampled_label_0,rows_confounders_upsampled_label_1])
+            rows_confounders_upsampled_2 = pd.concat([rows_confounders_upsampled_label_0,rows_confounders_upsampled_label_1])
 
-        print("Confounders upsampled by", str(multiplier), "times. \n From", str(
-            len_rows_confounders+len_rows_confounders_l1), " samples to", str(len(rows_confounders_upsampled)))
-        print("Upsample both parts of confounders, hateful and non hateful - option 2")
+            print("Confounders upsampled by", str(multiplier), "times. \n From", str(
+                len_rows_confounders+len_rows_confounders_l1), " samples to", str(len(rows_confounders_upsampled_2)))
+            print("Upsample both parts of confounders, hateful and non hateful - option 2")
 
 
         
@@ -133,48 +141,56 @@ class MemeDataset(data.Dataset):
         #################################
         #Upsample both hateful and not hateful duplicated text memes - option 3
         #################################
-        # len_rows_confounders = len(duplicated_text)        
-        # # Create an upsample of data by sampling with replacement and reseting index
-        # rows_confounders_upsampled = duplicated_text.sample(
-        #     n=len_rows_confounders*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
-        # print("Confounders upsampled by", str(multiplier), "times. \n From", str(
-        #     len_rows_confounders), " samples to", str(len(rows_confounders_upsampled)))
-        # print("Upsample both hateful and not hateful duplicated text memes - option 3")
+        rows_confounders_upsampled_3 = pd.DataFrame()
+        if "3" in self.upsample_options:
+            print("Using upsampling option 3")
+            len_rows_confounders = len(duplicated_text)        
+            # Create an upsample of data by sampling with replacement and reseting index
+            rows_confounders_upsampled_3 = duplicated_text.sample(
+                n=len_rows_confounders*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
+            print("Confounders upsampled by", str(multiplier), "times. \n From", str(
+                len_rows_confounders), " samples to", str(len(rows_confounders_upsampled_3)))
+            print("Upsample both hateful and not hateful duplicated text memes - option 3")
 
 
 
 
+        
 
         #################################
         #Augment data by changing text of toxic memes for random text of non toxic memes - Option A, use together with options 1, 2 or 3
         #################################
-        # DATA_MULT_AUGM = 2
-        # #Get label 1 data
-        # label_1_rows = train_data_df.loc[train_data_df.label==1]
-        # sample_amount = len(label_1_rows)*DATA_MULT_AUGM
-        # #Upsample toxic memes
-        # resample_label_1 = label_1_rows.sample(n=sample_amount,replace=True,random_state=SEED).reset_index(drop=True)
-        
-        # #Get non toxic memes
-        # label_0_rows = train_data_df.loc[train_data_df.label==0]
-        # #Get the text of non toxic memes
-        # label_0_unique_txt = label_0_rows['text'].unique()
-        # #Upsample non toxic texts to match the amount of toxic memes that will be detoxified
-        # resample_label_0_txt = pd.DataFrame(label_0_unique_txt,columns=['text']).sample(n=sample_amount,replace=True,random_state=SEED).reset_index(drop=True)
-        # #Change the text of toxic memes for the one of non toxic ones
-        # resample_label_1.loc[:,'text'] = resample_label_0_txt['text']
-        # # Set label to 0 since they should not be considered toxic anymore
-        # resample_label_1.loc[:,'label'] = 0
-        # #Concat to main data
-        # train_data_df = pd.concat([resample_label_1,train_data_df])
-        # new_suffix += '_text_augmented'
-        # print("Augment data by changing text of toxic memes - Option A")
+        rows_confounders_upsampled_A = pd.DataFrame()
+        if "A" in self.upsample_options:
+            print("Using upsampling option A")
+            DATA_MULT_AUGM = 2
+            #Get label 1 data
+            label_1_rows = train_data_df.loc[train_data_df.label==1]
+            sample_amount = len(label_1_rows)*DATA_MULT_AUGM
+            #Upsample toxic memes
+            resample_label_1 = label_1_rows.sample(n=sample_amount,replace=True,random_state=SEED).reset_index(drop=True)
+            
+            #Get non toxic memes
+            label_0_rows = train_data_df.loc[train_data_df.label==0]
+            #Get the text of non toxic memes
+            label_0_unique_txt = label_0_rows['text'].unique()
+            #Upsample non toxic texts to match the amount of toxic memes that will be detoxified
+            resample_label_0_txt = pd.DataFrame(label_0_unique_txt,columns=['text']).sample(n=sample_amount,replace=True,random_state=SEED).reset_index(drop=True)
+            #Change the text of toxic memes for the one of non toxic ones
+            resample_label_1.loc[:,'text'] = resample_label_0_txt['text']
+            # Set label to 0 since they should not be considered toxic anymore
+            resample_label_1.loc[:,'label'] = 0
+            #Concat to main data
+            rows_confounders_upsampled_A = resample_label_1
+            # rows_confounders_upsampled = pd.concat([resample_label_1,rows_confounders_upsampled])
+            new_suffix += '_text_augmented'
+            print("Augment data by changing text of toxic memes - Option A")
 
 
 
         # Add new upsamples list to main data
         save_new_confounders_data = pd.concat(
-            [rows_confounders_upsampled, train_data_df])
+            [rows_confounders_upsampled_1, rows_confounders_upsampled_2, rows_confounders_upsampled_1, rows_confounders_upsampled_A, train_data_df])
         # Shuffle the concatenated data and reset index
         save_new_confounders_data = save_new_confounders_data.sample(
             frac=1, random_state=SEED).reset_index(drop=True)
