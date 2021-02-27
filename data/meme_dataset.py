@@ -186,11 +186,36 @@ class MemeDataset(data.Dataset):
             new_suffix += '_text_augmented'
             print("Augment data by changing text of toxic memes - Option A")
 
+        
+        #################################
+        #Upsample both parts of image confounders, hateful and non hateful option 2 but with images. Option I       
+        rows_confounders_upsampled_I = pd.DataFrame()
+        if "I" in self.upsample_options:
+            print("Using upsampling option I - Images")
+            #File created in image_similarity.ipynb, the process requires hashing images and finding the disjoint-set using graphs
+            # Due computing complexity, finding confounders is precomputed.
+            with open('image_confounders_id.json','r') as filehandle:
+                confounder_imgs = json.load(filehandle)
+            img_confounders = train_data_df.loc[train_data_df.id.isin(confounder_imgs)]
+            img_confounders_label_0 = img_confounders.loc[img_confounders.label == 0]
+            img_confounders_label_1 = img_confounders.loc[img_confounders.label == 1]
+
+            len_rows_confounders_l0 = len(img_confounders_label_0)
+            len_rows_confounders_l1 = len(img_confounders_label_1)
+
+            # Create an upsample of data by sampling with replacement and reseting index
+            rows_confounders_upsampled_label_0 = img_confounders_label_0.sample(n=len_rows_confounders_l0*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
+            rows_confounders_upsampled_label_1 = img_confounders_label_1.sample(n=len_rows_confounders_l1*multiplier, replace=True, random_state=SEED).reset_index(drop=True)
+
+            rows_confounders_upsampled_I = pd.concat([rows_confounders_upsampled_label_0,rows_confounders_upsampled_label_1])
 
 
-        # Add new upsamples list to main data
+        # Concatenate all the upsampling df to the main train data.
+        # If an upsampling method was chosen in the args, its df is empty by default.
         save_new_confounders_data = pd.concat(
-            [rows_confounders_upsampled_1, rows_confounders_upsampled_2, rows_confounders_upsampled_1, rows_confounders_upsampled_A, train_data_df])
+            [rows_confounders_upsampled_1, rows_confounders_upsampled_2,
+             rows_confounders_upsampled_1, rows_confounders_upsampled_A,
+             rows_confounders_upsampled_I, train_data_df])
         # Shuffle the concatenated data and reset index
         save_new_confounders_data = save_new_confounders_data.sample(
             frac=1, random_state=SEED).reset_index(drop=True)
