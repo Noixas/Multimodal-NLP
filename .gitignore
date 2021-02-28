@@ -39,3 +39,7 @@ Untitled.ipynb
 *.xz
 
 dataset/view\?usp=sharing
+
+*.pyc
+
+project_rubric_shan.pdf
