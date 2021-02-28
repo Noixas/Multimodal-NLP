@@ -110,8 +110,8 @@ class TrainerUniter():
                                     linear_layers=self.config['linear_layers'])
         else:
             self.load_model()
-        print("Uniter model")
-        print(self.model)
+        # print("Uniter model")
+        # print(self.model)
 
     def load_model(self):
         # Load pretrained model
@@ -585,6 +585,8 @@ if __name__ == '__main__':
                         help='Hidden size for gender and race')
     parser.add_argument('--linear_layers', type=int, default=1,
                         help='Set the amount of final linear layers after the uniter model')
+    parser.add_argument('--upsample_options', type=str, default="2",
+                        help='Define the option used to upsample data. Combinations are possible by adding them with a space e.g. "1 2 3 A" ')
                         
     args, unparsed = parser.parse_known_args()
     config = args.__dict__
@@ -644,17 +646,20 @@ if __name__ == '__main__':
                                 text_padding=tokenizer_func, 
                                 filter_text=config["filter_text"],
                                 upsample_multiplier=config["upsample_multiplier"],
-                                use_gender_race_probs=use_gender_race_probs)
+                                use_gender_race_probs=use_gender_race_probs,
+                                upsample_options = config['upsample_options'])
     val_dataset = MemeDataset(filepath=os.path.join(config['data_path'], 'dev_seen.jsonl'),
                               feature_dir=config['feature_path'], 
                               text_padding=tokenizer_func, 
                               filter_text=config["filter_text"],
-                              use_gender_race_probs=use_gender_race_probs)
+                              use_gender_race_probs=use_gender_race_probs,
+                              upsample_options = config['upsample_options'])
     test_dataset = MemeDataset(filepath=os.path.join(config['data_path'], 'test_seen.jsonl'),
                                feature_dir=config['feature_path'], 
                                text_padding=tokenizer_func, 
                                filter_text=config["filter_text"],
-                               use_gender_race_probs=use_gender_race_probs)
+                               use_gender_race_probs=use_gender_race_probs,
+                               upsample_options = config['upsample_options'])
 
     config['train_loader'] = data.DataLoader(train_dataset, batch_size=config['batch_size'],
                                              num_workers=config['num_workers'], collate_fn=train_dataset.get_collate_fn(), shuffle=True, pin_memory=True)

@@ -39,6 +39,7 @@ Untitled.ipynb
 *.xz
 
 dataset/view\?usp=sharing
+wandb/
 
 *.pyc
 
