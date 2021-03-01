@@ -44,3 +44,9 @@ wandb/
 *.pyc
 
 project_rubric_shan.pdf
+
+vis_checkpoints/
+
+A_Multimodal_Shan_manual.pdf
+
+A_Multimodal_Shan.pdf
