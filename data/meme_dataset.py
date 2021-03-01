@@ -221,7 +221,7 @@ class MemeDataset(data.Dataset):
 
         # Set the new filename to save upsampled data
         str_path_options = "_".join(self.upsample_options.split())
-        new_suffix += '_upsampled_confounders_options_'+str_path_options+"_"+str(multiplier)+'x_times.jsonl'
+        new_suffix += '_upsampled_confounders_options_'+str_path_options+"_by_"+str(multiplier)+'x_times.jsonl'
         save_new_data = self.filepath.replace('.jsonl', new_suffix)
         save_new_confounders_data.to_json(
             save_new_data, lines=True, orient='records')
