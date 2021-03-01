@@ -193,7 +193,7 @@ class MemeDataset(data.Dataset):
             print("Using upsampling option I - Images")
             #File created in image_similarity.ipynb, the process requires hashing images and finding the disjoint-set using graphs
             # Due computing complexity, finding confounders is precomputed.
-            with open('./dataset/upsampling/image_confounders_id.json','r') as filehandle:
+            with open('./dataset/upsampling_img_hash/image_confounders_id.json','r') as filehandle:
                 confounder_imgs = json.load(filehandle)
             img_confounders = train_data_df.loc[train_data_df.id.isin(confounder_imgs)]
             img_confounders_label_0 = img_confounders.loc[img_confounders.label == 0]
@@ -222,7 +222,7 @@ class MemeDataset(data.Dataset):
         # Set the new filename to save upsampled data
         str_path_options = "_".join(self.upsample_options.split())
         new_suffix += '_upsampled_confounders_options_'+str_path_options+"_by_"+str(multiplier)+'x_times.jsonl'
-        save_new_data = self.filepath.replace('.jsonl', new_suffix)
+        save_new_data = self.basepath+"/upsampling/"+ self.filepath.replace('.jsonl', new_suffix)
         save_new_confounders_data.to_json(
             save_new_data, lines=True, orient='records')
         print("Saved confounder samples to: ")
