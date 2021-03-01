@@ -127,3 +127,4 @@ xlrd==1.2.0
 yarl==1.6.0
 zipp==3.2.0
 wandb==0.10.19
+imagehash==4.2.0
