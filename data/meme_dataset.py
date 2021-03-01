@@ -220,9 +220,11 @@ class MemeDataset(data.Dataset):
             frac=1, random_state=SEED).reset_index(drop=True)
 
         # Set the new filename to save upsampled data
+        print("self.upsample_options",self.upsample_options)
         str_path_options = "_".join(self.upsample_options.split())
+        print("str_path_options",str_path_options)
         new_suffix += '_upsampled_confounders_options_'+str_path_options+"_by_"+str(multiplier)+'x_times.jsonl'
-        save_new_data = self.basepath+"/upsampling/"+ self.filepath.replace('.jsonl', new_suffix)
+        save_new_data = self.basepath+"/upsampling/"+ self.name + new_suffix
         save_new_confounders_data.to_json(
             save_new_data, lines=True, orient='records')
         print("Saved confounder samples to: ")
