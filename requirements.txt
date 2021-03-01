@@ -104,7 +104,7 @@ six==1.15.0
 sklearn==0.0
 smmap==3.0.4
 soupsieve==2.0.1
-tensorboard==2.3.0
+tensorboard==2.4.1
 tensorboard-plugin-wit==1.7.0
 termcolor==1.1.0
 terminado==0.9.1
