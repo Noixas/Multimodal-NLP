@@ -133,7 +133,7 @@ subprocess32==3.5.4
 tensorboard-plugin-wit==1.7.0
 tensorboard==1.15.0
 tensorflow-estimator==1.15.1
-tensorflow==1.15.0
+tensorflow==2.4.0
 termcolor==1.1.0
 terminado==0.9.1
 testpath==0.4.4
