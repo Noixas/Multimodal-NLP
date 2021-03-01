@@ -481,7 +481,9 @@ class TrainerUniter():
 
 
 if __name__ == '__main__':
-    wandb.init(project="multimodal-nlp2")
+    wandb.init(project="multimodal-nlp2",anonymous="must")
+    # wandb.init(project="multimodal-nlp2")
+    
     wandb.tensorboard.patch(root_logdir='./vis_checkpoints',
                             pytorch=True, tensorboardX=False)
     parser = argparse.ArgumentParser()
@@ -577,7 +579,7 @@ if __name__ == '__main__':
                         help='Normalize images by dividing them by their height and width. Default=True')
     parser.add_argument('--train_filename', type=str, default='train.jsonl',
                         help='The name of the trainin json file to load.')
-    parser.add_argument('--upsample_multiplier', type=int, default=0,
+    parser.add_argument('--upsample_multiplier', type=float, default=0,
                         help='Multiplier used to increase the amount of confounders in training data')
     parser.add_argument('--note', type=str, default='',
                         help='Add a note that can be seen in wandb')
