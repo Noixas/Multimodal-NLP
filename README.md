@@ -17,14 +17,14 @@ Here we outline the steps required to run `main.ipynb`. These steps were used in
 <pre>
 .
 ├── Multimodal-NLP/
-├── dataset
-│   ├── img/
-│   ├── own_features/
-│   ├── train.jsonl
-│   ├── dev_seen.jsonl
-│   ├── dev_unseen.jsonl
-│   ├── test_seen.jsonl
-│   ├── test_unseen.jsonl
+│       ├── dataset
+│       ├── img/
+│       ├── own_features/
+│       ├── train.jsonl
+│       ├── dev_seen.jsonl
+│       ├── dev_unseen.jsonl
+│       ├── test_seen.jsonl
+│       ├── test_unseen.jsonl
 </pre>
 
 - In the terminal go to the path where the repository was cloned. E.g. `/home/username/Documents/Multimodal-NLP/`

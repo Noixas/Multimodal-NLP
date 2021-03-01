@@ -165,7 +165,7 @@ class MemeDataset(data.Dataset):
             print("Using upsampling option A")
             #Get label 1 data
             label_1_rows = train_data_df.loc[train_data_df.label==1]
-            sample_amount = len(label_1_rows)*multiplier
+            sample_amount = int(len(label_1_rows)*multiplier)
             #Upsample toxic memes
             resample_label_1 = label_1_rows.sample(n=sample_amount,replace=True,random_state=SEED).reset_index(drop=True)
             
@@ -193,7 +193,7 @@ class MemeDataset(data.Dataset):
             print("Using upsampling option I - Images")
             #File created in image_similarity.ipynb, the process requires hashing images and finding the disjoint-set using graphs
             # Due computing complexity, finding confounders is precomputed.
-            with open('image_confounders_id.json','r') as filehandle:
+            with open('./dataset/upsampling/image_confounders_id.json','r') as filehandle:
                 confounder_imgs = json.load(filehandle)
             img_confounders = train_data_df.loc[train_data_df.id.isin(confounder_imgs)]
             img_confounders_label_0 = img_confounders.loc[img_confounders.label == 0]

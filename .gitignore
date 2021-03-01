@@ -44,3 +44,5 @@ wandb/
 *.pyc
 
 project_rubric_shan.pdf
+
+vis_checkpoints/
