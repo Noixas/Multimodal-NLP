@@ -481,6 +481,7 @@ class TrainerUniter():
 
 
 if __name__ == '__main__':
+    wandb.init(project="multimodal-nlp2",anonymous="allow")
     wandb.init(project="multimodal-nlp2")
     wandb.tensorboard.patch(root_logdir='./vis_checkpoints',
                             pytorch=True, tensorboardX=False)

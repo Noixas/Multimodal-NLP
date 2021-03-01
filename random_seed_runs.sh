@@ -631,44 +631,44 @@ seeds="18 43 99"
 # done
 ###################################################################################
 
-echo "Start  Base + 2 linear layers + text_filtering + 1.5 text_upsampling +  1.5 Image upsampling" 
-for seed in $seeds; do
-            echo "Seed:"
-            echo ${seed}
-            args=(
-                # Paths
-                --config config/uniter-base.json
-                --data_path ./dataset --model_path ./model_checkpoints 
-                --pretrained_model_file uniter-base.pt 
-                --feature_path ./dataset/own_features
-                --model_save_name meme.pt
-                # Constant hyperparams
-                --scheduler warmup_cosine 
-                --warmup_steps 500 
-                --max_epoch 30 
-                --batch_size 16 
-                --patience 5 
-                --gradient_accumulation 2
-                --lr 3e-5 
-                --pos_wt 1
-                --normalize_img
-                --seed ${seed}
+# echo "Start  Base + 2 linear layers + text_filtering + 1.5 text_upsampling +  1.5 Image upsampling" 
+# for seed in $seeds; do
+#             echo "Seed:"
+#             echo ${seed}
+#             args=(
+#                 # Paths
+#                 --config config/uniter-base.json
+#                 --data_path ./dataset --model_path ./model_checkpoints 
+#                 --pretrained_model_file uniter-base.pt 
+#                 --feature_path ./dataset/own_features
+#                 --model_save_name meme.pt
+#                 # Constant hyperparams
+#                 --scheduler warmup_cosine 
+#                 --warmup_steps 500 
+#                 --max_epoch 30 
+#                 --batch_size 16 
+#                 --patience 5 
+#                 --gradient_accumulation 2
+#                 --lr 3e-5 
+#                 --pos_wt 1
+#                 --normalize_img
+#                 --seed ${seed}
 
-                --linear_layers 2
-                --gender_race_hidden_size 0
-                --upsample_multiplier 1.5
-                --filter_text
-                --note "Baseline + 2 linear layers + text_filtering + 1.5 text_upsampling +  1.5 Image upsampling"
+#                 --linear_layers 2
+#                 --gender_race_hidden_size 0
+#                 --upsample_multiplier 1.5
+#                 --filter_text
+#                 --note "Baseline + 2 linear layers + text_filtering + 1.5 text_upsampling +  1.5 Image upsampling"
                 
-                --upsample_options "I 2" #Option image [I] and [2] from text upsampling
+#                 --upsample_options "I 2" #Option image [I] and [2] from text upsampling
 
-                )
+#                 )
 
-            python -u train_uniter.py "${args[@]}"
-done
-
+#             python -u train_uniter.py "${args[@]}"
+# done
+break_seeds="43 99" #I stopped the bash script so continue with those seeds
 echo "Start  Base + 2 linear layers  + 1.5 text_upsampling +  1.5 Image upsampling" 
-for seed in $seeds; do
+for seed in $break_seeds; do
             echo "Seed:"
             echo ${seed}
             args=(
