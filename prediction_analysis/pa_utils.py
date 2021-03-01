@@ -206,6 +206,7 @@ def plot_subclass_accs(subclasses_df):
     subclasses_df.T.plot(kind="bar",figsize=(6, 4))
     plt.title("Accuracies for different subclasses of non-hateful memes", fontsize=12)
     plt.legend(loc="lower right", framealpha=1, fontsize=10) # bbox_to_anchor=(1.0, 1.40)
-    plt.xticks(rotation=45, fontsize=10)
+    plt.xticks(rotation=0, fontsize=10)
+    plt.savefig("subclass_accs.png", dpi=500)
     plt.show()
 

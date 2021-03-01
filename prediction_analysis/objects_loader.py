@@ -12,7 +12,7 @@ class ObjectsLoader():
         self._load_object_vocab()
     
     def _load_object_vocab(self):
-        with open("../objects_vocab.txt") as f:
+        with open("objects_vocab.txt") as f:
             vocab_file = f.read().split("\n")   
 
         self.object_vocab = {i:name for i, name in enumerate(vocab_file)}
